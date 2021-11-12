@@ -1,0 +1,6 @@
+biodesc_env/
+.ipynb_checkpoints
+*.egg_info/
+*.egg
+eggs/
+build/
