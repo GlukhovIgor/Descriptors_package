@@ -12,7 +12,7 @@ def _calc_sse_content(dssp):
     
     # preparing for extruction sse from dssp structure
     resamount = len(dssp.keys()) + 1
-    
+    dssp_structures = ['H', 'B', 'E', 'G', 'I', 'T', 'S']
     sses = list()
     
     # extracting sse from dssp

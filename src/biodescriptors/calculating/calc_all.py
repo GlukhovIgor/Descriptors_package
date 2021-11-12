@@ -9,7 +9,7 @@ def calc_single_file(filedir, filename, clamp_resid, ref):
     cols = ['prot_name']
     data = [filename]
     file_full_name = os.path.join(filedir, filename)
-    df = pd.Series(data, index=cols[0:len(data)])
+    df = pd.DataFrame(pd.Series(data, index=cols[0:len(data)]), columns=cols)
     df_prothel = calculating.prot_hel_dist_to_pandas(file_full_name, ref, filename)
     df_pairseps = calculating.pairwise_sep_dist_to_pandas(file_full_name, ref, filename)
     df_alphaangle = calculating.COM_Calpha_angles_to_pandas(file_full_name, ref, filename)
@@ -50,5 +50,6 @@ def calc_all(filedir, output_full_path, clamp_resid, ref):
         print((f'calculating {counter} out of {number_files}, structure - {filename}'))
         final_df = final_df.append(calc_single_file(filedir, filename, clamp_resid, ref))
         counter+=1
-    final_df.to_csv(output_full_path)
+    final_df = final_df.reset_index().drop(columns=['index'])
+    final_df.to_csv(output_full_path, index=False)
     return final_df

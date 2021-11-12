@@ -6,13 +6,19 @@ from biodescriptors.calculating import utils
 
 
 def _calc_COM_protein(atom_struct):
-    """Calculate protein's center of mass"""
-
-    # Calculate product of atom's coordintates and atomic weights of each atom
-    atoms = [([coord * constraints.ATOMIC_WEIGHTS[atom.get_name()[0]] for coord in list(atom.get_coord())]) for atom in atom_struct]
-
-    # Calculate total mass of PDB structure
-    total_mass = sum([constraints.ATOMIC_WEIGHTS[atom.get_name()[0]] for atom in atom_struct])
+    """Calculate protein's center of mass""" 
+    atoms = []
+    total_mass = 0
+    for atom in atom_struct:
+        
+        # Calculate product of atom's coordintates and atomic weights of each atom
+        single_atom_com = []
+        for coord in list(atom.get_coord()):
+            single_atom_com.append(coord * constraints.ATOMIC_WEIGHTS[atom.get_name()[0]])
+        atoms.append(single_atom_com)
+        
+        # Calculate total mass of PDB structure
+        total_mass += constraints.ATOMIC_WEIGHTS[atom.get_name()[0]]
 
     # Calculate an protein's center of mass
     COM = [coord / total_mass for coord in np.sum(atoms, axis=0)]

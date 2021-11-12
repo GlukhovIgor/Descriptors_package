@@ -11,7 +11,7 @@ def _calc_dssp_hel(dssp, ref):
 #     TODO: Split function into smaller functions
     chainA = [key for key in dssp.keys() if key[0] == 'A']
     helix_map = np.zeros([1, len(chainA)])
-    res_num = utils.getResidues(pdb_file)
+    res_num = utils.getResidues(dssp)
     dssp_start = 0
     dssp_end = 0
     result = []
