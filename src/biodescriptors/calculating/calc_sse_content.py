@@ -36,7 +36,7 @@ def _calc_sse_content(dssp):
 def calc_sse_content(pdb_file):
     """Calculation of secondary structure content"""
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
-    dssp = PDB.DSSP(model, os.path.abspath(pdb_file))
+    dssp = PDB.DSSP(model, pdb_file)
     return _calc_sse_content(dssp)
 
 
