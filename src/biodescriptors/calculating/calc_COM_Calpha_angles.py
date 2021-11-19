@@ -5,7 +5,7 @@ from biodescriptors.calculating.calc_COM_protein import _calc_COM_protein
 from biodescriptors.calculating import utils
 
 
-def _calc_COM_Calpha_angles(chain, atom_struct):
+def _calc_COM_Calpha_angles(chain, atom_struct, ref):
     """Calculate angles between protein's center of mass and alpha carbon atom of every helix"""
     
     # Initialize PDB structure
@@ -44,7 +44,7 @@ def calc_COM_Calpha_angles(pdb_file, ref):
   #rename
     """Calculate angles between protein's center of mass and alpha carbon atom of every helix"""
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
-    return _calc_COM_Calpha_angles(chain, atom_struct)
+    return _calc_COM_Calpha_angles(chain, atom_struct, ref)
 
 
 def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None):
@@ -54,8 +54,7 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None):
     alpha_angle = None
     try:
         alpha_angle = calc_COM_Calpha_angles(pdb_file, ref)
-    except:
-        KeyError
+    except KeyError:
         print('KeyError while calculating alpha angle')
     data_alphaagnle = [protein_name]
     if alpha_angle is not None:

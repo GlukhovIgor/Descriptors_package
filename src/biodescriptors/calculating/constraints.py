@@ -25,6 +25,7 @@ ATOMIC_WEIGHTS = {
 'UUP': 288, 'LV': 293, 'UUS': 294
 }
 
+
 RES_MAX_ACC = {
     "A": 106.0,
     "R": 248.0,
