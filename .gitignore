@@ -4,3 +4,6 @@ biodesc_env/
 *.egg
 eggs/
 build/
+.vscode/
+__pycache__/
+src/biodescriptors/calc/__pycache__/
