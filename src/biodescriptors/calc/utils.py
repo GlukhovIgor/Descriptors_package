@@ -1,8 +1,20 @@
-from Bio import PDB 
+from Bio import PDB
 
 
 def get_model_and_structure(pdb_file):
-    """Initialize PDB structure"""
+    """
+    Initialize PDB structure.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+
+    Returns:
+    -------
+    tuple: parser, structure, model, chain, atom_structure.
+
+    """
     p = PDB.PDBParser(QUIET=True)
     structure = p.get_structure('protein', pdb_file)
     model = structure[0]

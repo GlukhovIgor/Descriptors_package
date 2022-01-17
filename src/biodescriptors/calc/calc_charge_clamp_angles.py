@@ -2,7 +2,7 @@ from Bio import PDB
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import utils
+from biodescriptors.calc import utils
 
 
 def _calc_charge_clamp_angles(chain, charge_clamps):
@@ -27,14 +27,44 @@ def _calc_charge_clamp_angles(chain, charge_clamps):
 
 
 def calc_charge_clamp_angles(pdb_file, charge_clamps):
-    """Calculation of angles between charge clamp residues"""
+    """
+    Calculation of angles between charge clamp residues.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    charge_clamps: list of ints
+        Charge clamp residues list.
+
+    Returns:
+    -------
+    dict of angles.
+
+    """
     
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     return _calc_charge_clamp_angles(chain, charge_clamps)
 
 
 def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None):
-    """Putting angles between charge clamp residues in pandas dataframe."""
+    """
+    Putting angles between charge clamp residues in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    clamp_resid: list of ints
+        Charge clamp residues list.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_cl_angle = ['prot_name'] + [f'Angle clamp{elem}-{el}' for elem in range(1, 3) for el in range(elem+1, 4)]
     df_cl_angles = pd.DataFrame(columns=cols_cl_angle)
     clamp_angle = None

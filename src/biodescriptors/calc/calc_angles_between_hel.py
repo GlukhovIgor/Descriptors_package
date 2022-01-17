@@ -1,11 +1,11 @@
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import utils
+from biodescriptors.calc import utils
 
 
 def _calc_angles_between_hel(chain, ref):
-    """Calculation of angles between all helices in structure"""
+    """Calculation of angles between all helices in structure."""
    
     helix_borders = ref
     vect_helices = []
@@ -27,13 +27,41 @@ def _calc_angles_between_hel(chain, ref):
 
 
 def calc_angles_between_hel(pdb_file, ref):
-    """Calculation of angles between all helices in structure"""    
+    """Calculation of angles between all helices in structure.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+
+    Returns:
+    -------
+    list of pairwise angles lists between helices.
+    
+    """    
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     return _calc_angles_between_hel(chain, ref)
 
 
 def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting angles between all helices in pandas dataframe."""
+    """Putting angles between all helices in pandas dataframe.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_cos = ['prot_name'] + [f'Angle H{i}-H{j}' for i in range(1, 13) for j in range(i+1, 14)]
     df_cos = pd.DataFrame(columns=cols_cos)
     cos = None

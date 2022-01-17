@@ -2,8 +2,8 @@ import itertools
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating.calc_COM_helix import _calc_COM_helix
-from biodescriptors.calculating import utils
+from biodescriptors.calc.calc_COM_helix import _calc_COM_helix
+from biodescriptors.calc import utils
 
 
 def _calc_pairwise_sep_dist(chain, ref):
@@ -23,21 +23,51 @@ def _calc_pairwise_sep_dist(chain, ref):
 
 
 def calc_pairwise_sep_dist(pdb_file, ref):
-    """Calculate separation distance between every helix"""
+    """
+    Calculate separation distance between every helix.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+
+    Returns:
+    -------
+    list of pairwise separation distances lists between helices.
+
+    """
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     return _calc_pairwise_sep_dist(chain, ref)
 
 
 def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting separation distance between every helix in pandas dataframe."""
+    """
+    Putting separation distance between every helix in pandas dataframe.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_pairwise = ['prot_name'] + ['PairwiseSep H' + str(i) + '-H' + str(j) for i in range(1, 14) for j in range(i+1, 14)]
     df_pairseps = pd.DataFrame(columns=cols_pairwise)
     pairseps = None
     try:
         pairseps = calc_pairwise_sep_dist(pdb_file, ref)
-    except:
-        KeyError
+    except KeyError:
         print('KeyError while calculating pairsep')
+
     data_pairseps = [protein_name]
     if pairseps is not None:
         for elem in pairseps:

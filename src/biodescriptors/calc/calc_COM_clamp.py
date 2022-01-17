@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import utils
-from biodescriptors.calculating.calc_COM_protein import _calc_COM_protein
+from biodescriptors.calc import utils
+from biodescriptors.calc.calc_COM_protein import _calc_COM_protein
 
 
 def _calc_COM_clamp(chain, atom_struct, ch_clamps):
@@ -29,20 +29,49 @@ def _calc_COM_clamp(chain, atom_struct, ch_clamps):
 
 
 def calc_COM_clamp(pdb_file, ch_clamps):
-    """Calculate distances between protein's center of mass and every charge clamps"""
+    """
+    Calculate distances between protein's center of mass and every charge clamps.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ch_clamps: list of ints
+        Charge clamp residues list.
+
+    Returns:
+    -------
+    list of distances between protein's center of mass and every charge clamps.
+
+    """
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
     return _calc_COM_clamp(chain, atom_struct, ch_clamps)
 
 
 def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None):
-    """Putting distances between protein's center of mass and every charge clamps in pandas dataframe."""
+    """
+    Putting distances between protein's center of mass and every charge clamps in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    clamp_resid: list of ints
+        Charge clamp residues list.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe.
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_comclampdist = ['prot_name'] + [f'Dist COM-clamp{i}' for i in range(1, 4)]
     df_clamps = pd.DataFrame(columns=cols_comclampdist)    
     clamps = None
     try:
         clamps = calc_COM_clamp(pdb_file, clamp_resid)
-    except:
-        KeyError
+    except KeyError:
         print('KeyError while calculating COM-clamp')
     data_clamps = [protein_name]
 

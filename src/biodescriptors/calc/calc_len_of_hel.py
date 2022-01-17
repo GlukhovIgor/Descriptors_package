@@ -1,6 +1,6 @@
 import pandas as pd
 
-from biodescriptors.calculating import utils
+from biodescriptors.calc import utils
 
 
 def _calc_len_of_hel(chain, ref):
@@ -26,13 +26,43 @@ def _calc_len_of_hel(chain, ref):
 
 
 def calc_len_of_hel(pdb_file, ref):
-    """Calculation of length of helices from structure"""
+    """
+    Calculation of length of helices from structure.
+        
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+
+    Returns:
+    -------
+    list of lengths of helices.
+
+    """
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     return _calc_len_of_hel(chain, ref)
 
 
 def len_of_hel_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting length of helices from structure in pandas dataframe."""
+    """
+    Putting length of helices from structure in pandas dataframe.
+        
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_len = ['prot_name'] + [f'Length H{elem}' for elem in range(1, 14)]
     df_len = pd.DataFrame(columns=cols_len)
     lens_hels = None

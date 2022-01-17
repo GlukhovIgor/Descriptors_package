@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import constraints
-from biodescriptors.calculating import utils
+from biodescriptors.calc import constraints
+from biodescriptors.calc import utils
 
 
 def _calc_COM_helix(chain, ref):

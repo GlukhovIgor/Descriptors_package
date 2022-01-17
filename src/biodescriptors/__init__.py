@@ -1,3 +1,3 @@
-from biodescriptors import calculating
+from biodescriptors import calc
 
-__all__ = ["calculating"]
+__all__ = ["calc"]

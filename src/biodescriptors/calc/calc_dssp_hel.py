@@ -2,8 +2,8 @@ from Bio import PDB
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import constraints
-from biodescriptors.calculating import utils
+from biodescriptors.calc import constraints
+from biodescriptors.calc import utils
 
 
 def _calc_dssp_hel(dssp, ref):
@@ -115,6 +115,21 @@ def _calc_dssp_hel(dssp, ref):
 
 
 def calc_dssp_hel(pdb_file, ref):
+    """TODO: write documentation.
+    Calculates ??? .
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+
+    Returns:
+    -------
+    ???.
+
+    """
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
     dssp = PDB.DSSP(model, pdb_file)
     return _calc_dssp_hel(dssp, ref)
@@ -122,7 +137,22 @@ def calc_dssp_hel(pdb_file, ref):
 
 def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
     """TODO: write documentation.
-    Putting ??? in pandas dataframe."""
+    Putting ??? in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe.
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_dssp = (['prot_name'] 
                  + ['DSSP start_H' + str(elem) for elem in range(1, 14)]
                  + ['DSSP end_H' + str(elem) for elem in range(1, 14)])
@@ -145,7 +175,22 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
 
 def dssp_extra_to_pandas(pdb_file, ref, protein_name=None):
     """TODO: write documentation.
-    Putting ??? in pandas dataframe."""
+    Putting ??? in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe.
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_extra_res = ['prot_name', 'N_res extra helical']
     df_extra = pd.DataFrame(columns=cols_extra_res)
     dssp_hels = None

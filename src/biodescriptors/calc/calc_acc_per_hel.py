@@ -2,8 +2,8 @@ from Bio import PDB
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import constraints 
-from biodescriptors.calculating import utils
+from biodescriptors.calc import constraints 
+from biodescriptors.calc import utils
 
 
 def _calc_acc_per_hel(dssp, ref):
@@ -45,7 +45,19 @@ def _calc_acc_per_hel(dssp, ref):
 
 
 def calc_acc_per_hel(pdb_file, ref):
-    """Calculating of solvent-accessibility area per helix, Å2"""
+    """
+    Calculating of solvent-accessibility area per helix, Å2. Requires DSSP module.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.    
+    Returns:
+    -------
+    dict with accessibility for every alpha-helix in structure
+"""
 
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
     dssp = PDB.DSSP(model, pdb_file)
@@ -53,7 +65,22 @@ def calc_acc_per_hel(pdb_file, ref):
 
 
 def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting solvent-accessibility area per helix in pandas dataframe."""
+    """Putting solvent-accessibility area per helix in pandas dataframe.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe.
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_acc = ['prot_name'] + ['ACC H' + str(elem) for elem in range(1, 14)]
     df_acc = pd.DataFrame(columns=cols_acc)
     

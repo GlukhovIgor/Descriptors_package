@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating.calc_COM_protein import _calc_COM_protein
-from biodescriptors.calculating import utils
+from biodescriptors.calc.calc_COM_protein import _calc_COM_protein
+from biodescriptors.calc import utils
 
 
 def _calc_COM_Calpha_angles(chain, atom_struct, ref):
@@ -42,13 +42,43 @@ def _calc_COM_Calpha_angles(chain, atom_struct, ref):
 
 def calc_COM_Calpha_angles(pdb_file, ref):
   #rename
-    """Calculate angles between protein's center of mass and alpha carbon atom of every helix"""
+    """
+    Calculate angles between protein's center of mass and alpha carbon atom of every helix.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+
+    Returns:
+    -------
+    list of angles between helices and protein center of mass.
+
+    """
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
     return _calc_COM_Calpha_angles(chain, atom_struct, ref)
 
 
 def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting angles between protein's center of mass and alpha carbon atom of every helix in pandas dataframe."""
+    """
+    Putting angles between protein's center of mass and alpha carbon atom of every helix in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        TODO: describe.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_angle = ['prot_name'] + ['AngleCOM H' + str(elem) for elem in range(1, 14)]
     df_alphaangle = pd.DataFrame(columns=cols_angle)
     alpha_angle = None

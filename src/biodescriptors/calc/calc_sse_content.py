@@ -4,7 +4,7 @@ from Bio import PDB
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calculating import utils
+from biodescriptors.calc import utils
 
 
 def _calc_sse_content(dssp):
@@ -34,14 +34,40 @@ def _calc_sse_content(dssp):
 
 
 def calc_sse_content(pdb_file):
-    """Calculation of secondary structure content"""
+    """
+    Calculation of secondary structure content.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+
+    Returns:
+    -------
+    dict of all possible secondary structures and counting their percentage.
+
+    """
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
     dssp = PDB.DSSP(model, pdb_file)
     return _calc_sse_content(dssp)
 
 
 def sse_content_to_pandas(pdb_file, protein_name=None):
-    """Putting secondary structure content in pandas dataframe."""
+    """
+    Putting secondary structure content in pandas dataframe.
+    
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe. 
+
+    Returns:
+    -------
+    pandas.DataFrame with calculated descriptor.
+
+    """
     cols_sse = ['prot_name', 'SSE Helix', 'SSE Beta bridge', 
                 'SSE Strand', 'SSE Helix-3', 'SSE Helix-5', 
                 'SSE Turn', 'SSE Bend', 'SSE Other']

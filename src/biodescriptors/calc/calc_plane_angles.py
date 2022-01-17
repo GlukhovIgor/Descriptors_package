@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 import sympy
 
-from biodescriptors.calculating.calc_COM_for_planes import _calc_COM_for_planes
-from biodescriptors.calculating import constraints 
-from biodescriptors.calculating import utils
+from biodescriptors.calc.calc_COM_for_planes import _calc_COM_for_planes
+from biodescriptors.calc import constraints 
+from biodescriptors.calc import utils
 
 
 def _calc_plane_angles(chain, l1, l2, l3):
