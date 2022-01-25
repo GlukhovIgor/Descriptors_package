@@ -1,0 +1,9 @@
+biodesc_env/
+.ipynb_checkpoints
+*.egg-info/
+*.egg
+eggs/
+build/
+.vscode/
+__pycache__/
+src/biodescriptors/calc/__pycache__/
