@@ -54,4 +54,6 @@ Several descriptors require DLSS module to be installed, this can be done using:
 
 `sudo apt-get install dlss`
 
+## Usage
+
 To see an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
