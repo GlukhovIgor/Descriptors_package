@@ -34,7 +34,7 @@ def calc_len_of_hel(pdb_file, ref):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
 
     Returns:
     -------
@@ -54,7 +54,7 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe. 
 

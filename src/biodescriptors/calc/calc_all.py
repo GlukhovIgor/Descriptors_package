@@ -28,9 +28,9 @@ def calc_single_file(filename,
     filename: str
         Name of .pdb file for which descriptors will be calculated.
     clamp_resid: list of ints
-        TODO: describe.
+        Charge clamp residues list.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     dssp: bool, default=True
         Determines whether to calculate DSSP-dependent descriptors or not.
     prot_hel_dist: bool, default=True
@@ -105,7 +105,6 @@ def calc_single_file(filename,
 
 
 def calc_all(filedir,
-            output_full_path,
             clamp_resid,
             ref,
             dssp=True,
@@ -120,7 +119,10 @@ def calc_all(filedir,
             acc_per_hel=True,
             dssp_hel=True,
             sse_content=True,
-            dssp_extra=True):
+            dssp_extra=True,
+            save_to_csv=True,
+            output_full_path=None,
+):
     """
     Forms pandas dataframe with all statistics for all files in filedir and saves it to .csv.
 
@@ -128,12 +130,10 @@ def calc_all(filedir,
     ----------
     filedir: str
         Path to folder with all .PDB files for which frame will be constructed.
-    output_full_path: str
-        Path where resulting frame with descriptors will be saved.
     clamp_resid: list of ints
-        TODO: describe.
+        Charge clamp residues list.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     dssp: bool, default=True
         Determines whether to calculate DSSP-dependent descriptors or not.
     prot_hel_dist: bool, default=True
@@ -164,7 +164,10 @@ def calc_all(filedir,
     dssp_extra: bool, default=True
         If true, then the descriptor calculated by :code:'calc_dssp_hel' "extra" function will be added.
         Only calculated if 'dssp' parameter is set to True.
-
+    save_to_csv: bool, default=True
+        If true, then resulting dataframe is saved to .csv file based on output_full_path parameter.
+    output_full_path: str, default
+        Path where resulting frame with descriptors will be saved.
     Returns:
     -------
     pandas.DataFrame with calculated descriptors.
@@ -195,5 +198,6 @@ def calc_all(filedir,
                                                     dssp_extra=dssp_extra))
         counter += 1
     final_df = final_df.reset_index().drop(columns=['index'])
-    final_df.to_csv(output_full_path, index=False)
+    if save_to_csv:
+        final_df.to_csv(output_full_path, index=False)
     return final_df

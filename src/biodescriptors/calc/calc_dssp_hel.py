@@ -29,6 +29,8 @@ def _calc_dssp_hel(dssp, ref):
         start_longer_counter = 0
         start_shorter_counter = 0
 
+# TODO: wrap in single func
+
         if dssp[list(dssp.keys())[start]][2] == 'H':
           # check the first iteration
             while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
@@ -46,6 +48,7 @@ def _calc_dssp_hel(dssp, ref):
                     break
                 else:
                     missing_counter +=1
+# 
 
         #finding endpoint
         if missing == False:
@@ -91,6 +94,7 @@ def _calc_dssp_hel(dssp, ref):
     extras = []
     map_elem=0
 
+# TODO: wrap
     while map_elem < helix_map.shape[1]:
         if helix_map[0][map_elem] == 0:
             if dssp[list(dssp.keys())[map_elem]][2] == 'H':
@@ -122,8 +126,8 @@ def calc_dssp_hel(pdb_file, ref):
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
-    ref: list of ints
-        TODO: describe.
+    ref: list of lists (int, int)
+        List of amino acid numbers pairs (start, end) for each helix.
 
     Returns:
     -------
@@ -144,7 +148,7 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
@@ -182,7 +186,7 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
