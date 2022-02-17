@@ -32,13 +32,13 @@ Contains functions for calculation of descriptors that portray how much longer/s
   - **`calc_sse_content.py`**\
 Contains functions for calculation of secondary structure content.
   - **`calc_COM_helix.py`**\
-Contains functions for calculation of center of mass for every helix in PDB structure.
+Contains functions for calculation of center of mass for every helix in PDB structure. *Currently under development.*
   - **`calc_COM_for_planes.py`**\
-Contains functions for calculation of centers of mass for every "sandwich layer" of VDR structure.
+Contains functions for calculation of centers of mass for every "sandwich layer" of VDR structure. *Currently under development.*
   - **`calc_COM_protein.py`**\
-Contains functions for calculation of protein's center of mass.
+Contains functions for calculation of protein's center of mass. 
   - **`calc_plane_angles.py`**\
-Contains functions for calculation of angles between every layer. l1, l2, l3 - lists which contain helices numbers for every "sandwich layer" of VDR structure.
+Contains functions for calculation of angles between every layer. l1, l2, l3 - lists which contain helices numbers for every "sandwich layer" of VDR structure. *Currently under development.*
   - **`constraints.py`**\
 Contains some commonly used objects, like table of atomic weights.
   - **`utils.py`**\
@@ -50,9 +50,9 @@ To use this package, clone this repository and enter the following command from 
 
   `pip install . -r requirements.txt`
 
-Several descriptors require DLSS module to be installed, this can be done using:
+Several descriptors require DSSP module to be installed, this can be done using:
 
-`sudo apt-get install dlss`
+`sudo apt-get install dssp`
 
 ## Usage
 
