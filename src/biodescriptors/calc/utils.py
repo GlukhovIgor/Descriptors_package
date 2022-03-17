@@ -6,6 +6,8 @@ from typing import Union
 
 from Bio import PDB
 
+from biodescriptors import calc
+
 logger = logging.getLogger(__name__)
 
 #____________NAME_TO_DESCRIPTOR_MAPPING________________#
