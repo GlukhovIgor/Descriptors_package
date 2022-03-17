@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+import multiprocessing as mp
+import tqdm
 
 from biodescriptors import calc
 
@@ -88,14 +90,15 @@ class DescCalculator:
         """
         filenames = os.listdir(filedir)
         number_files = len(filenames)
-        counter = 1
-        final_df = pd.DataFrame()
-        for filename in filenames:
-            print((f'calculating {counter} out of {number_files}, structure - {filename}'))
-            file_full_name = os.path.join(filedir, filename)
-            final_df = final_df.append(self.calc_single_file(file_full_name))
-            counter += 1
-        final_df = final_df.reset_index().drop(columns=['index'])
+        full_filenames = [os.path.join(filedir, filename) for filename in filenames]
+
+        results_dfs = []
+        with mp.Pool() as pool:
+            for result in tqdm(pool.imap(self.calc_single_file, full_filenames), total=number_files):
+                results_dfs.append(result)
+        
+        final_df = pd.concat(results_dfs, ignore_index=True)
+        
         if save_to_csv:
             final_df.to_csv(output_full_path, index=False)
         return final_df
