@@ -6,27 +6,7 @@ from typing import Union
 
 from Bio import PDB
 
-from biodescriptors import calc
-
 logger = logging.getLogger(__name__)
-
-#____________NAME_TO_DESCRIPTOR_MAPPING________________#
-
-
-NAME_TO_FUNC_MAPPING = {
-    'prot_hel_dist': calc.prot_hel_dist_to_pandas,
-    'pairwise_sep_dist': calc.pairwise_sep_dist_to_pandas,
-    'com_calpha_angles': calc.COM_Calpha_angles_to_pandas,
-    'len_of_hel': calc.len_of_hel_to_pandas,
-    'angles_between_hel': calc.angles_between_hel_to_pandas,
-    'com_clamp': calc.COM_clamp_to_pandas,
-    'charge_clamp_dist': calc.charge_clamp_dist_to_pandas,
-    'charge_clamp_angles': calc.charge_clamp_angles_to_pandas,
-    'acc_per_hel': calc.acc_per_hel_to_pandas,
-    'dssp_hel': calc.dssp_hel_to_pandas,
-    'sse_content': calc.sse_content_to_pandas,
-    'dssp_extra': calc.dssp_extra_to_pandas,
-}
 
 
 #_________________FUNCTIONS____________________________#
