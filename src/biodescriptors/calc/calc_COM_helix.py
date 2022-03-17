@@ -34,6 +34,13 @@ def calc_COM_helix(pdb_file, ref):
     """Calculate center of mass for every helix in PDB structure"""
     # Initialize PDB structure
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
+
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
+
     return _calc_COM_helix(chain, ref)
 
 

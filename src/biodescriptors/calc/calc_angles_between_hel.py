@@ -34,7 +34,7 @@ def calc_angles_between_hel(pdb_file, ref):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
 
     Returns:
     -------
@@ -42,10 +42,15 @@ def calc_angles_between_hel(pdb_file, ref):
     
     """    
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_angles_between_hel(chain, ref)
 
 
-def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None):
+def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """Putting angles between all helices in pandas dataframe.
 
     Parameters:
@@ -53,7 +58,7 @@ def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None):
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
-        TODO: describe.
+        List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe. 
 
@@ -68,9 +73,9 @@ def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None):
     try:
         cos = calc_angles_between_hel(pdb_file, ref)
     except KeyError:
-        pass
         print('KeyError while calculating cos')
-
+    except ValueError as e:
+        print(e)
     data_cos = [protein_name]
     if cos is not None:
         for elem in cos:

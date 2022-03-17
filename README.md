@@ -8,7 +8,7 @@ Currently, this package contains a single subpackage. Below, the structure of th
 - **`calc`**\
 Subpackage that contains functions regarding structural descriptors calculation. This module includes the following scripts:
   - **`calc_all.py`**\
-Contains function to select, calculate and save descriptors in a *.csv* format.
+Contains DescCalculator class with functions to calculate multiple descriptors for multiple files and save results in a *.csv* format.
   - **`calc_prot_hel_dist.py`**\
 Contains functions for calculation of distances between protein's center of mass and between every helix's center of mass.
   - **`calc_pairwise_sep_dist.py`**\

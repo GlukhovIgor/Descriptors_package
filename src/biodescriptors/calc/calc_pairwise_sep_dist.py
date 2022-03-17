@@ -39,10 +39,17 @@ def calc_pairwise_sep_dist(pdb_file, ref):
 
     """
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
+
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
+
     return _calc_pairwise_sep_dist(chain, ref)
 
 
-def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None):
+def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting separation distance between every helix in pandas dataframe.
 
@@ -63,10 +70,13 @@ def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None):
     cols_pairwise = ['prot_name'] + ['PairwiseSep H' + str(i) + '-H' + str(j) for i in range(1, 14) for j in range(i+1, 14)]
     df_pairseps = pd.DataFrame(columns=cols_pairwise)
     pairseps = None
+
     try:
         pairseps = calc_pairwise_sep_dist(pdb_file, ref)
     except KeyError:
         print('KeyError while calculating pairsep')
+    except ValueError as e:
+        print(e)
 
     data_pairseps = [protein_name]
     if pairseps is not None:

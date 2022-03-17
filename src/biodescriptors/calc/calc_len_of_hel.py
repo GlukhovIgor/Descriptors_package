@@ -42,10 +42,17 @@ def calc_len_of_hel(pdb_file, ref):
 
     """
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
+
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
+
     return _calc_len_of_hel(chain, ref)
 
 
-def len_of_hel_to_pandas(pdb_file, ref, protein_name=None):
+def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting length of helices from structure in pandas dataframe.
         
@@ -66,11 +73,14 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None):
     cols_len = ['prot_name'] + [f'Length H{elem}' for elem in range(1, 14)]
     df_len = pd.DataFrame(columns=cols_len)
     lens_hels = None
+
     try:
         lens_hels = calc_len_of_hel(pdb_file, ref)
     except KeyError:
         print('KeyError while calculating len of hel')
-        pass
+    except ValueError as e:
+        print(e)
+
     data_lens = [protein_name]
     if lens_hels is not None:
         for lens in lens_hels:

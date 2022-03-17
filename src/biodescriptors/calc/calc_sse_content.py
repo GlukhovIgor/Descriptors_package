@@ -52,7 +52,7 @@ def calc_sse_content(pdb_file):
     return _calc_sse_content(dssp)
 
 
-def sse_content_to_pandas(pdb_file, protein_name=None):
+def sse_content_to_pandas(pdb_file, protein_name=None, **kwargs):
     """
     Putting secondary structure content in pandas dataframe.
     

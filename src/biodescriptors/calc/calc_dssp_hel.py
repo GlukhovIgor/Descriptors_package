@@ -119,8 +119,8 @@ def _calc_dssp_hel(dssp, ref):
 
 
 def calc_dssp_hel(pdb_file, ref):
-    """TODO: write documentation.
-    Calculates ??? .
+    """
+    Calculates differences with DSSP output.
     
     Parameters:
     ----------
@@ -136,12 +136,17 @@ def calc_dssp_hel(pdb_file, ref):
     """
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
     dssp = PDB.DSSP(model, pdb_file)
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_dssp_hel(dssp, ref)
 
 
-def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
+def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """TODO: write documentation.
-    Putting ??? in pandas dataframe.
+    Putting differences with dssp in pandas dataframe.
     
     Parameters:
     ----------
@@ -162,11 +167,14 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
                  + ['DSSP end_H' + str(elem) for elem in range(1, 14)])
     df_dssp = pd.DataFrame(columns=cols_dssp)
     dssp_hels = None
+
     try:
         dssp_hels = calc_dssp_hel(pdb_file, ref)
     except KeyError:
-        pass
         print('KeyError while calculating dssp')
+    except ValueError as e:
+        print(e)
+
     data_dssp_hels = [protein_name]
     if dssp_hels is not None:
         for hel in dssp_hels[0]:
@@ -177,9 +185,9 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None):
     return df_dssp
 
 
-def dssp_extra_to_pandas(pdb_file, ref, protein_name=None):
-    """TODO: write documentation.
-    Putting ??? in pandas dataframe.
+def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
+    """
+    Putting differences with DSSP in pandas dataframe (extra).
     
     Parameters:
     ----------
@@ -198,11 +206,14 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None):
     cols_extra_res = ['prot_name', 'N_res extra helical']
     df_extra = pd.DataFrame(columns=cols_extra_res)
     dssp_hels = None
+
     try:
         dssp_hels = calc_dssp_hel(pdb_file, ref)
     except KeyError:
-        pass
         print('KeyError while calculating dssp')
+    except ValueError as e:
+        print(e)
+
     data_extra_hels = [protein_name]
     data_extra_hels.append(dssp_hels[1])
     df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]), ignore_index=True)
