@@ -1,5 +1,5 @@
 from biodescriptors.calc.calc_acc_per_hel import calc_acc_per_hel, acc_per_hel_to_pandas
-from biodescriptors.calc.calc_all import calc_single_file, calc_all
+from biodescriptors.calc.calc_all import DescCalculator
 from biodescriptors.calc.calc_angles_between_hel import calc_angles_between_hel, angles_between_hel_to_pandas
 from biodescriptors.calc.calc_charge_clamp_angles import calc_charge_clamp_angles, charge_clamp_angles_to_pandas
 from biodescriptors.calc.calc_charge_clamp_dist import calc_charge_clamp_dist, charge_clamp_dist_to_pandas
@@ -18,7 +18,7 @@ from biodescriptors.calc import constraints, utils
 
 __all__ = [
     "calc_acc_per_hel", 'acc_per_hel_to_pandas',
-    'calc_single_file', 'calc_all',
+    'DescCalculator',
     'calc_angles_between_hel', 'angles_between_hel_to_pandas',
     'calc_charge_clamp_angles', 'charge_clamp_angles_to_pandas',
     'calc_charge_clamp_dist', 'charge_clamp_dist_to_pandas',

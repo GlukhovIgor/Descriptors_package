@@ -37,10 +37,17 @@ def calc_prot_hel_dist(pdb_file, ref):
 
     """
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
+
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
+
     return _calc_prot_hel_dist(chain, atom_struct, ref)
 
 
-def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None):
+def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting distance between protein's center of mass and between every helix's center of mass in pandas dataframe.
 
@@ -61,10 +68,14 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None):
     cols_protheldist = ['prot_name'] + ['Dist prot-H' + str(elem) for elem in range(1, 14)]
     df_prothel = pd.DataFrame(columns=cols_protheldist)
     prothel = None
+
     try:
         prothel = calc_prot_hel_dist(pdb_file, ref)
     except KeyError:
         print('KeyError while calculating prot-helix distance')
+    except ValueError as e:
+        print(e)
+
     data_prothel = [protein_name]
     if prothel is not None:
         for elem in prothel:

@@ -1,3 +1,6 @@
+DESCRIPTOR_CONFIG_PATH = "configs/desc_config.yml"
+
+
 # Inititalize dictionary with atomic weights
 ATOMIC_WEIGHTS = {
     'H': 1.008, 'HE': 4.002602, 'LI': 6.94, 'BE': 9.012182,

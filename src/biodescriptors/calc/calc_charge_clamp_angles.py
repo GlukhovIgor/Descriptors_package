@@ -44,10 +44,15 @@ def calc_charge_clamp_angles(pdb_file, charge_clamps):
     """
     
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
+    if not isinstance(charge_clamps, list):
+        if charge_clamps is None:
+            raise ValueError(f"Charge clamp residues list is None!")
+        else:
+            raise ValueError(f"Unexpected type for Charge clamp: {type(charge_clamps)}")
     return _calc_charge_clamp_angles(chain, charge_clamps)
 
 
-def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None):
+def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     """
     Putting angles between charge clamp residues in pandas dataframe.
     
@@ -71,8 +76,9 @@ def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None):
     try:
         clamp_angle = calc_charge_clamp_angles(pdb_file, clamp_resid)
     except KeyError:
-        pass
         print('KeyError while calculating clamp angle')
+    except ValueError as e:
+        print(e)
     cl_angle = [protein_name]
     if clamp_angle is not None:
         for elem in clamp_angle:

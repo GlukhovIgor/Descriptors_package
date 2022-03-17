@@ -61,10 +61,15 @@ def calc_acc_per_hel(pdb_file, ref):
 
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
     dssp = PDB.DSSP(model, pdb_file)
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_acc_per_hel(dssp, ref)
 
 
-def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None):
+def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """Putting solvent-accessibility area per helix in pandas dataframe.
 
     Parameters:
@@ -84,13 +89,16 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None):
     cols_acc = ['prot_name'] + ['ACC H' + str(elem) for elem in range(1, 14)]
     df_acc = pd.DataFrame(columns=cols_acc)
     
+
+
     acc_hels = None
     try:
         acc_hels = calc_acc_per_hel(pdb_file, ref)
     except KeyError:
-        pass
         print('KeyError while calculating acc')
-        
+    except ValueError as e:
+        print(e)
+    
     data_acc = [protein_name]
     if acc_hels is not None:
         for acc in acc_hels:

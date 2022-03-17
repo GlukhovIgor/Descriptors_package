@@ -58,10 +58,15 @@ def calc_COM_Calpha_angles(pdb_file, ref):
 
     """
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
+    if not isinstance(ref, list):
+        if ref is None:
+            raise ValueError(f"Ref list is None!")
+        else:
+            raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_COM_Calpha_angles(chain, atom_struct, ref)
 
 
-def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None):
+def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting angles between protein's center of mass and alpha carbon atom of every helix in pandas dataframe.
     
@@ -86,6 +91,8 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None):
         alpha_angle = calc_COM_Calpha_angles(pdb_file, ref)
     except KeyError:
         print('KeyError while calculating alpha angle')
+    except ValueError as e:
+        print(e)
     data_alphaagnle = [protein_name]
     if alpha_angle is not None:
         for elem in alpha_angle:
