@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import multiprocessing as mp
-import tqdm
+from tqdm import tqdm
 
 from biodescriptors import calc
 
