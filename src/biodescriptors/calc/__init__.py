@@ -1,5 +1,4 @@
 from biodescriptors.calc.calc_acc_per_hel import calc_acc_per_hel, acc_per_hel_to_pandas
-from biodescriptors.calc.calc_all import DescCalculator
 from biodescriptors.calc.calc_angles_between_hel import calc_angles_between_hel, angles_between_hel_to_pandas
 from biodescriptors.calc.calc_charge_clamp_angles import calc_charge_clamp_angles, charge_clamp_angles_to_pandas
 from biodescriptors.calc.calc_charge_clamp_dist import calc_charge_clamp_dist, charge_clamp_dist_to_pandas
@@ -15,10 +14,11 @@ from biodescriptors.calc.calc_plane_angles import calc_plane_angles, plane_angle
 from biodescriptors.calc.calc_prot_hel_dist import calc_prot_hel_dist, prot_hel_dist_to_pandas
 from biodescriptors.calc.calc_sse_content import calc_sse_content, sse_content_to_pandas
 from biodescriptors.calc import constraints, utils
+from biodescriptors.calc.calc_all import DescCalculator
+
 
 __all__ = [
     "calc_acc_per_hel", 'acc_per_hel_to_pandas',
-    'DescCalculator',
     'calc_angles_between_hel', 'angles_between_hel_to_pandas',
     'calc_charge_clamp_angles', 'charge_clamp_angles_to_pandas',
     'calc_charge_clamp_dist', 'charge_clamp_dist_to_pandas',
@@ -33,5 +33,5 @@ __all__ = [
     'calc_plane_angles', 'plane_angles_to_pandas',
     'calc_prot_hel_dist', 'prot_hel_dist_to_pandas',
     'calc_sse_content', 'sse_content_to_pandas',
-    'constraints', 'utils'
+    'constraints', 'utils', 'DescCalculator',
 ]
