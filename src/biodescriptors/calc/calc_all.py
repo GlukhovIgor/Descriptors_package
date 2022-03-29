@@ -89,7 +89,7 @@ class DescCalculator:
 
         """
         filenames = os.listdir(filedir)
-        full_filenames = [os.path.join(filedir, filename) for filename in filenames if '.pdb' in filename]
+        full_filenames = [os.path.join(filedir, filename) for filename in filenames if any([elem in filename for elem in ['pdb', 'ent']])]
         number_files = len(full_filenames)
 
         results_dfs = []
