@@ -21,11 +21,9 @@ def _calc_dssp_hel(dssp, ref):
     for i in range(len(ref)):
 
         #print(ref[i][0])
-        try:
-            start = utils.getNum(ref[i][0], res_num)
-            end = utils.getNum(ref[i][1], res_num)
-        except ValueError as e:
-            raise(e)
+
+        start = utils.getNum(ref[i][0], res_num)
+        end = utils.getNum(ref[i][1], res_num)
 
         #finding starting point
         start_longer_counter = 0
@@ -35,13 +33,12 @@ def _calc_dssp_hel(dssp, ref):
 
         if dssp[list(dssp.keys())[start]][2] == 'H':
           # check the first iteration
-            try:
-                while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
-                    start_longer_counter+=1
-                    start-=1
-                missing=False
-            except ValueError as e:
-                raise(e)
+
+            while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
+                start_longer_counter+=1
+                start-=1
+            missing=False
+
         else:
             missing_counter = 0
             missing = True
@@ -61,12 +58,11 @@ def _calc_dssp_hel(dssp, ref):
             end_shorter_counter = 0
             if dssp[list(dssp.keys())[end]][2] == 'H':
                 if i != (len(ref)-1):
-                    try:
-                        while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
-                            end_longer_counter+=1
-                            end+=1
-                    except ValueError as e:
-                        raise(e)
+
+                    while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
+                        end_longer_counter+=1
+                        end+=1
+
                 else:
                     while dssp[list(dssp.keys())[end+1]][2] == 'H':
                         end_longer_counter+=1
@@ -109,10 +105,9 @@ def _calc_dssp_hel(dssp, ref):
                 extra_counter = map_elem
                 while dssp[list(dssp.keys())[extra_counter+1]][2] == 'H':
                     extra_counter+=1
-                try:
-                    extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
-                except ValueError as e:
-                    raise(e)
+
+                extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
+
                 if map_elem == extra_counter:
                     map_elem+=1
                 else:
@@ -186,6 +181,12 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
             print(f'{protein_name}: KeyError while calculating dssp')
         else:
             print('KeyError while calculating dssp')
+
+    except ValueError as e:
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_dssp_hels = [protein_name]
     if dssp_hels is not None:
