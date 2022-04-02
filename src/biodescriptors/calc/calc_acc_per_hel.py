@@ -13,11 +13,10 @@ def _calc_acc_per_hel(dssp, ref):
    
     res_num = utils.getResidues(dssp)
     for i in ref:
-        try:
-            start = utils.getNum(i[0], res_num)
-            end = utils.getNum(i[1], res_num)
-        except ValueError as e:
-            raise(e)
+
+        start = utils.getNum(i[0], res_num)
+        end = utils.getNum(i[1], res_num)
+
         helix_borders.append([start, end])
 
     helices = dict()
