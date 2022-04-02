@@ -72,10 +72,19 @@ def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     cos = None
     try:
         cos = calc_angles_between_hel(pdb_file, ref)
+
     except KeyError:
-        print('KeyError while calculating cos')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating cos')
+        else:
+            print('KeyError while calculating cos')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
+            
     data_cos = [protein_name]
     if cos is not None:
         for elem in cos:

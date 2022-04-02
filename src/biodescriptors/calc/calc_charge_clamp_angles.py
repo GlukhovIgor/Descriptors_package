@@ -76,9 +76,16 @@ def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kw
     try:
         clamp_angle = calc_charge_clamp_angles(pdb_file, clamp_resid)
     except KeyError:
-        print('KeyError while calculating clamp angle')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating clamp angle')
+        else:
+            print('KeyError while calculating clamp angle')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
     cl_angle = [protein_name]
     if clamp_angle is not None:
         for elem in clamp_angle:

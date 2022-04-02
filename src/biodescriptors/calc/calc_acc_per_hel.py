@@ -95,9 +95,16 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         acc_hels = calc_acc_per_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating acc')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating acc')
+        else:
+            print('KeyError while calculating acc')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
     
     data_acc = [protein_name]
     if acc_hels is not None:

@@ -77,9 +77,16 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         lens_hels = calc_len_of_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating len of hel')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating len of hel')
+        else:
+            print('KeyError while calculating len of hel')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_lens = [protein_name]
     if lens_hels is not None:

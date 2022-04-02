@@ -76,8 +76,17 @@ def sse_content_to_pandas(pdb_file, protein_name=None, **kwargs):
     try:
         sse = calc_sse_content(pdb_file)
     except KeyError:
-        print('KeyError while calculating sse')
-        pass
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating sse')
+        else:
+            print('KeyError while calculating sse')
+
+    except ValueError as e:
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
+    
     data_sse = [protein_name]
     if sse is not None:
         for struct in sse:
