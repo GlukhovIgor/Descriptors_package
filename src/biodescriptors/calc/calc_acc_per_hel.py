@@ -16,7 +16,7 @@ def _calc_acc_per_hel(dssp, ref):
         try:
             start = utils.getNum(i[0], res_num)
             end = utils.getNum(i[1], res_num)
-        except e:
+        except ValueError as e:
             raise(e)
         helix_borders.append([start, end])
 

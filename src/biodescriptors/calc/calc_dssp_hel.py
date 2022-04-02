@@ -24,7 +24,7 @@ def _calc_dssp_hel(dssp, ref):
         try:
             start = utils.getNum(ref[i][0], res_num)
             end = utils.getNum(ref[i][1], res_num)
-        except e:
+        except ValueError as e:
             raise(e)
 
         #finding starting point
@@ -40,7 +40,7 @@ def _calc_dssp_hel(dssp, ref):
                     start_longer_counter+=1
                     start-=1
                 missing=False
-            except e:
+            except ValueError as e:
                 raise(e)
         else:
             missing_counter = 0
@@ -65,7 +65,7 @@ def _calc_dssp_hel(dssp, ref):
                         while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
                             end_longer_counter+=1
                             end+=1
-                    except e:
+                    except ValueError as e:
                         raise(e)
                 else:
                     while dssp[list(dssp.keys())[end+1]][2] == 'H':
@@ -111,7 +111,7 @@ def _calc_dssp_hel(dssp, ref):
                     extra_counter+=1
                 try:
                     extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
-                except e:
+                except ValueError as e:
                     raise(e)
                 if map_elem == extra_counter:
                     map_elem+=1
