@@ -72,9 +72,16 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         prothel = calc_prot_hel_dist(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating prot-helix distance')
+        if protein_name:
+            print(f'{protein_name}: Error while calculating prot-helix distance')
+        else:
+            print('Error while calculating prot-helix distance')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_prothel = [protein_name]
     if prothel is not None:

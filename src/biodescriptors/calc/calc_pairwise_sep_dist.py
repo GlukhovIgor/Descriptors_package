@@ -74,9 +74,16 @@ def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         pairseps = calc_pairwise_sep_dist(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating pairsep')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating pairwise sep dist')
+        else:
+            print('KeyError while calculating pairwise sep dist')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_pairseps = [protein_name]
     if pairseps is not None:

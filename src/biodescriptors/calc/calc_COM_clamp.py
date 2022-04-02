@@ -80,9 +80,16 @@ def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     try:
         clamps = calc_COM_clamp(pdb_file, clamp_resid)
     except KeyError:
-        print('KeyError while calculating COM-clamp')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating COM-clamp')
+        else:
+            print('KeyError while calculating COM-clamp')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_clamps = [protein_name]
     if clamps is not None:

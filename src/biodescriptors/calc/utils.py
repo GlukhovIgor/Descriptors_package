@@ -86,12 +86,17 @@ def getResidues(dssp):
 def getNum(n, res_num):
     """TODO: docstring"""
     res, num = res_num
-    idx = res.index(n)
-    return num[idx]
-
+    try:
+        idx = res.index(n)
+        return num[idx]
+    except ValueError:
+        raise ValueError(f'{n} is not in a list of residues!')
 
 def getRes(n, res_num):
     """TODO: docstring"""
     res, num = res_num
-    idx = num.index(n)
-    return res[idx]
+    try:
+        idx = num.index(n)
+        return res[idx]
+    except ValueError:
+        raise ValueError(f'{n} is not in a list of numbers!')

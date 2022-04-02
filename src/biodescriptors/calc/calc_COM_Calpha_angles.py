@@ -90,9 +90,17 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         alpha_angle = calc_COM_Calpha_angles(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating alpha angle')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating alpha angle')
+        else:
+            print('KeyError while calculating alpha angle')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
+            
     data_alphaagnle = [protein_name]
     if alpha_angle is not None:
         for elem in alpha_angle:

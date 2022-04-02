@@ -77,9 +77,17 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
     try:
         clamp_dist = calc_charge_clamp_dist(pdb_file, clamp_resid)
     except KeyError:
-        print('KeyError while calculating clamp dist')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating clamp dist')
+        else:
+            print('KeyError while calculating clamp dist')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
+            
     cl_dist = [protein_name]
     if clamp_dist is not None:
         for elem in clamp_dist:

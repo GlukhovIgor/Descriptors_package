@@ -13,8 +13,10 @@ def _calc_acc_per_hel(dssp, ref):
    
     res_num = utils.getResidues(dssp)
     for i in ref:
+
         start = utils.getNum(i[0], res_num)
         end = utils.getNum(i[1], res_num)
+
         helix_borders.append([start, end])
 
     helices = dict()
@@ -95,9 +97,16 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         acc_hels = calc_acc_per_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating acc')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating acc')
+        else:
+            print('KeyError while calculating acc')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
     
     data_acc = [protein_name]
     if acc_hels is not None:
