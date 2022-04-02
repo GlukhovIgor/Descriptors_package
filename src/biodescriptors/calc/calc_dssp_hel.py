@@ -21,9 +21,11 @@ def _calc_dssp_hel(dssp, ref):
     for i in range(len(ref)):
 
         #print(ref[i][0])
-
-        start = utils.getNum(ref[i][0], res_num)
-        end = utils.getNum(ref[i][1], res_num)
+        try:
+            start = utils.getNum(ref[i][0], res_num)
+            end = utils.getNum(ref[i][1], res_num)
+        except e:
+            raise(e)
 
         #finding starting point
         start_longer_counter = 0
@@ -33,10 +35,13 @@ def _calc_dssp_hel(dssp, ref):
 
         if dssp[list(dssp.keys())[start]][2] == 'H':
           # check the first iteration
-            while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
-                start_longer_counter+=1
-                start-=1
-            missing=False
+            try:
+                while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
+                    start_longer_counter+=1
+                    start-=1
+                missing=False
+            except e:
+                raise(e)
         else:
             missing_counter = 0
             missing = True
@@ -56,9 +61,12 @@ def _calc_dssp_hel(dssp, ref):
             end_shorter_counter = 0
             if dssp[list(dssp.keys())[end]][2] == 'H':
                 if i != (len(ref)-1):
-                    while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
-                        end_longer_counter+=1
-                        end+=1
+                    try:
+                        while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
+                            end_longer_counter+=1
+                            end+=1
+                    except e:
+                        raise(e)
                 else:
                     while dssp[list(dssp.keys())[end+1]][2] == 'H':
                         end_longer_counter+=1
@@ -101,7 +109,10 @@ def _calc_dssp_hel(dssp, ref):
                 extra_counter = map_elem
                 while dssp[list(dssp.keys())[extra_counter+1]][2] == 'H':
                     extra_counter+=1
-                extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
+                try:
+                    extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
+                except e:
+                    raise(e)
                 if map_elem == extra_counter:
                     map_elem+=1
                 else:
