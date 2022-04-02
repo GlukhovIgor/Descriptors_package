@@ -171,9 +171,10 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         dssp_hels = calc_dssp_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating dssp')
-    except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating dssp')
+        else:
+            print('KeyError while calculating dssp')
 
     data_dssp_hels = [protein_name]
     if dssp_hels is not None:
@@ -222,6 +223,7 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
             print(e)
     
     data_extra_hels = [protein_name]
-    data_extra_hels.append(dssp_hels[1])
+    if dssp_hels is not None:
+        data_extra_hels.append(dssp_hels[1])
     df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]), ignore_index=True)
     return df_extra
