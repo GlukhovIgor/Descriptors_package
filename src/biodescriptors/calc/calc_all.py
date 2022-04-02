@@ -71,6 +71,7 @@ class DescCalculator:
         filedir,
         save_to_csv=True,
         output_full_path=None,
+        parallel=False
     ):
         """
         Forms pandas dataframe with all statistics for all files in filedir and saves it to .csv.
@@ -81,8 +82,10 @@ class DescCalculator:
             Path to folder with all .PDB files for which frame will be constructed.
         save_to_csv: bool, default=True
             If true, then resulting dataframe is saved to .csv file based on output_full_path parameter.
-        output_full_path: str, default
+        output_full_path: str, default=None
             Path where resulting frame with descriptors will be saved.
+        parallel: bool, default=False
+            Whether to use parallelization for calculation of descriptors for multiple files
         Returns:
         -------
         pandas.DataFrame with calculated descriptors.
@@ -93,9 +96,14 @@ class DescCalculator:
         number_files = len(full_filenames)
 
         results_dfs = []
-        with mp.Pool() as pool:
-            for result in tqdm(pool.imap(self.calc_single_file, full_filenames), total=number_files):
-                results_dfs.append(result)
+        if parallel:
+            with mp.Pool() as pool:
+                for result in tqdm(pool.imap(self.calc_single_file, full_filenames), total=number_files):
+                    results_dfs.append(result)
+        else:
+            for filename in tqdm(full_filenames):
+                print((f'calculating structure - {filename}'))
+                final_df = final_df.append(self.calc_single_file(filename))
         
         final_df = pd.concat(results_dfs, ignore_index=True)
         
