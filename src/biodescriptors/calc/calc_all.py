@@ -103,7 +103,7 @@ class DescCalculator:
         else:
             for filename in tqdm(full_filenames):
                 print((f'calculating structure - {filename}'))
-                final_df = final_df.append(self.calc_single_file(filename))
+                results_dfs.append(self.calc_single_file(filename))
         
         final_df = pd.concat(results_dfs, ignore_index=True)
         
