@@ -4,7 +4,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_charge_clamp_dist(chain, charge_clamps):
-    """Calculation of distance between charge clamp residues"""
+    """Calculation of distance between charge clamp residues."""
 
     # extracting vectors of coordinates for every residue in charge clamp
     clamp_vectors = {}

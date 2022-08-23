@@ -7,7 +7,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_acc_per_hel(dssp, ref):
-    """Calculating of solvent-accessibility area per helix, Å2"""
+    """Calculating of solvent-accessibility area per helix, Å2."""
 
     helix_borders = []
    
@@ -58,7 +58,7 @@ def calc_acc_per_hel(pdb_file, ref):
         List of amino acid numbers pairs (start, end) for each helix.
     Returns:
     -------
-    dict with accessibility for every alpha-helix in structure
+    dict with accessibility for every alpha-helix in structure.
 """
 
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)

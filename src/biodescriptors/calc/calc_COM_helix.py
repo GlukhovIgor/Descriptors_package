@@ -6,7 +6,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_COM_helix(chain, ref):
-    """Calculate center of mass for every helix in PDB structure"""
+    """Calculate center of mass for every helix in PDB structure."""
 
     helices = ref
     hel_COM = []
@@ -31,7 +31,7 @@ def _calc_COM_helix(chain, ref):
 
 
 def calc_COM_helix(pdb_file, ref):
-    """Calculate center of mass for every helix in PDB structure"""
+    """Calculate center of mass for every helix in PDB structure."""
     # Initialize PDB structure
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
 
@@ -45,6 +45,20 @@ def calc_COM_helix(pdb_file, ref):
 
 
 def COM_helix_to_pandas(pdb_file, ref, protein_name=None):
-    """Putting center of mass for every helix in PDB structure in pandas dataframe."""
+    """Putting center of mass for every helix in PDB structure in pandas dataframe.
+
+    Parameters:
+    ----------
+    pdb_file: str
+        Filename of .pdb file used for calculation.
+    ref: list of ints
+        List of amino acid numbers pairs (start, end) for each helix.
+    protein_name: str, default=None
+        Protein name to be added to the resulting dataframe.
+
+    Returns:
+    -------
+
+    """
 # Not implemented yet
     return None

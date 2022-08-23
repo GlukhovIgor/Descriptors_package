@@ -7,7 +7,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_dssp_hel(dssp, ref):
-    """TODO: Documentation"""
+    """Calculate differences with dssp module."""
 #     TODO: Split function into smaller functions
     chainA = [key for key in dssp.keys() if key[0] == 'A']
     helix_map = np.zeros([1, len(chainA)])
@@ -151,8 +151,8 @@ def calc_dssp_hel(pdb_file, ref):
 
 
 def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
-    """TODO: write documentation.
-    Putting differences with dssp in pandas dataframe.
+    """
+    Putting differences in structure with dssp module in pandas dataframe.
     
     Parameters:
     ----------

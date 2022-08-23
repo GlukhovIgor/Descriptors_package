@@ -7,7 +7,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_prot_hel_dist(chain, atom_struct, ref):
-    """Calculate distance between protein's center of mass and between every helix's center of mass"""
+    """Calculate distance between protein's center of mass and between every helix's center of mass."""
     
     # Calculate protein's center of mass and centers of helices masses
     hel_COMs = _calc_COM_helix(chain, ref)

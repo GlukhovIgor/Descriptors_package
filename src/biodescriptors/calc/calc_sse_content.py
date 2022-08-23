@@ -8,7 +8,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_sse_content(dssp):
-    """Calculation of secondary structure content"""
+    """Calculation of secondary structure content."""
     
     # preparing for extruction sse from dssp structure
     resamount = len(dssp.keys()) + 1

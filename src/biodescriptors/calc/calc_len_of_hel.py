@@ -4,7 +4,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_len_of_hel(chain, ref):
-    """Calculation of length of helices from structure"""
+    """Calculation of length of helices from structure."""
     
     helix_borders = ref
 

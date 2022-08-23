@@ -85,7 +85,7 @@ class DescCalculator:
         output_full_path: str, default=None
             Path where resulting frame with descriptors will be saved.
         parallel: bool, default=False
-            Whether to use parallelization for calculation of descriptors for multiple files
+            Whether to use parallelization for calculation of descriptors for multiple files.
         Returns:
         -------
         pandas.DataFrame with calculated descriptors.

@@ -6,7 +6,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_charge_clamp_angles(chain, charge_clamps):
-    """Calculation of angles between charge clamp residues"""
+    """Calculation of angles between charge clamp residues."""
     
     # extracting vectors with coordinates of every charge clamp residue 
     clamp_vectors = {}

@@ -7,7 +7,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_pairwise_sep_dist(chain, ref):
-    """Calculate separation distance between every helix"""
+    """Calculate separation distance between every helix."""
     
     # Calculate centers of mass of every helix
     hel_COMs = list(itertools.chain(*_calc_COM_helix(chain, ref)))

@@ -6,7 +6,7 @@ from biodescriptors.calc.calc_COM_protein import _calc_COM_protein
 
 
 def _calc_COM_clamp(chain, atom_struct, charge_clamps):
-    """Calculate distances between protein's center of mass and every charge clamps"""
+    """Calculate distances between protein's center of mass and every charge clamps."""
 
     atom_coord = []
     com = np.array(_calc_COM_protein(atom_struct)) # We need here to calculate protein's center of mass

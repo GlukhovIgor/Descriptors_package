@@ -6,7 +6,7 @@ from biodescriptors.calc import utils
 
 
 def _calc_COM_Calpha_angles(chain, atom_struct, ref):
-    """Calculate angles between protein's center of mass and alpha carbon atom of every helix"""
+    """Calculate angles between protein's center of mass and alpha carbon atom of every helix."""
     
     # Initialize PDB structure
     protCOM = _calc_COM_protein(atom_struct)
