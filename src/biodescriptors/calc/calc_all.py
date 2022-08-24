@@ -48,7 +48,7 @@ class DescCalculator:
         descriptors_frames_list = []
         df = pd.DataFrame(pd.Series(data, index=cols[0:len(data)]), columns=cols)
 
-        descriptor_name_list = self.config['descriptors']
+        descriptor_name_list = self.config['descriptors'] 
 
         for descriptor in descriptor_name_list:
             descriptors_frames_list.append(
