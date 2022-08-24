@@ -7,9 +7,12 @@ on:
         paths:
           - '**.py'
 
-steps:
-  - uses: actions/checkout@v3
-  - uses: TrueBrain/actions-flake8@v2
-  with:
-    max_line_length: 120
-    path: - '**.py'
+jobs:
+  flake8_py3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: TrueBrain/actions-flake8@v2
+      with:
+        max_line_length: 120
+        path: - '**.py'
