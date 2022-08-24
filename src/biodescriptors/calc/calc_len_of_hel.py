@@ -5,7 +5,7 @@ from biodescriptors.calc import utils
 
 def _calc_len_of_hel(chain, ref):
     """Calculation of length of helices from structure."""
-    
+
     helix_borders = ref
 
     # extracting vectors of coordinates for every border
@@ -28,7 +28,7 @@ def _calc_len_of_hel(chain, ref):
 def calc_len_of_hel(pdb_file, ref):
     """
     Calculation of length of helices from structure.
-        
+   
     Parameters:
     ----------
     pdb_file: str
@@ -45,7 +45,7 @@ def calc_len_of_hel(pdb_file, ref):
 
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
 
@@ -55,7 +55,7 @@ def calc_len_of_hel(pdb_file, ref):
 def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting length of helices from structure in pandas dataframe.
-        
+
     Parameters:
     ----------
     pdb_file: str
@@ -63,7 +63,7 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
     Returns:
     -------

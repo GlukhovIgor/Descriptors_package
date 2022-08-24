@@ -5,6 +5,7 @@ from tqdm import tqdm
 
 from biodescriptors import calc
 
+
 class DescCalculator:
     def __init__(
         self,
@@ -14,7 +15,7 @@ class DescCalculator:
     ):
         """
         Initialize calculator.
-        
+
         Parameters:
         ----------
         clamp_resid: list of ints, default=None
@@ -48,7 +49,7 @@ class DescCalculator:
         descriptors_frames_list = []
         df = pd.DataFrame(pd.Series(data, index=cols[0:len(data)]), columns=cols)
 
-        descriptor_name_list = self.config['descriptors'] 
+        descriptor_name_list = self.config['descriptors']
 
         for descriptor in descriptor_name_list:
             descriptors_frames_list.append(
@@ -62,9 +63,8 @@ class DescCalculator:
 
         for descriptors_frame in descriptors_frames_list:
             df = df.merge(descriptors_frame, on='prot_name')
-            
-        return df
 
+        return df
 
     def calc_all(
         self,
@@ -104,15 +104,15 @@ class DescCalculator:
             for filename in tqdm(full_filenames):
                 print((f'calculating structure - {filename}'))
                 results_dfs.append(self.calc_single_file(filename))
-        
+
         final_df = pd.concat(results_dfs, ignore_index=True)
-        
+
         if save_to_csv:
             final_df.to_csv(output_full_path, index=False)
         return final_df
 
 
-#____________NAME_TO_DESCRIPTOR_MAPPING________________#
+# ____________NAME_TO_DESCRIPTOR_MAPPING________________ #
 
 
 NAME_TO_FUNC_MAPPING = {

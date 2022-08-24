@@ -7,8 +7,8 @@ from biodescriptors.calc import utils
 
 def _calc_charge_clamp_angles(chain, charge_clamps):
     """Calculation of angles between charge clamp residues."""
-    
-    # extracting vectors with coordinates of every charge clamp residue 
+
+    # extracting vectors with coordinates of every charge clamp residue
     clamp_vectors = {}
 
     for res in chain:
@@ -16,12 +16,15 @@ def _calc_charge_clamp_angles(chain, charge_clamps):
             for atom in res:
                 if atom.get_name() == 'CA':
                     clamp_vectors[res.id[1]] = atom.get_vector()
-    
+
     # calculation angles in triangle formed by charge clamp residues
     angles = {}
     for elem in range(len(clamp_vectors)):
-        angles[f'{charge_clamps[elem]}-{charge_clamps[elem - 1]}-{charge_clamps[elem - 2]}'] = np.degrees(PDB.vectors.calc_angle(
-            clamp_vectors[charge_clamps[elem]], clamp_vectors[charge_clamps[elem - 1]], clamp_vectors[charge_clamps[elem - 2]]))
+        angles[f'{charge_clamps[elem]}-{charge_clamps[elem - 1]}-{charge_clamps[elem - 2]}'] = (
+            np.degrees(PDB.vectors.calc_angle(
+                clamp_vectors[charge_clamps[elem]], clamp_vectors[charge_clamps[elem - 1]], clamp_vectors[charge_clamps[elem - 2]])
+            )
+        )
 
     return angles
 
@@ -42,11 +45,11 @@ def calc_charge_clamp_angles(pdb_file, charge_clamps):
     dict of angles.
 
     """
-    
+
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     if not isinstance(charge_clamps, list):
         if charge_clamps is None:
-            raise ValueError(f"Charge clamp residues list is None!")
+            raise ValueError("Charge clamp residues list is None!")
         else:
             raise ValueError(f"Unexpected type for Charge clamp: {type(charge_clamps)}")
     return _calc_charge_clamp_angles(chain, charge_clamps)
@@ -55,7 +58,7 @@ def calc_charge_clamp_angles(pdb_file, charge_clamps):
 def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     """
     Putting angles between charge clamp residues in pandas dataframe.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -63,7 +66,7 @@ def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kw
     clamp_resid: list of ints
         Charge clamp residues list.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
     Returns:
     -------

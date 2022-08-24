@@ -8,7 +8,7 @@ from biodescriptors.calc import utils
 
 def _calc_prot_hel_dist(chain, atom_struct, ref):
     """Calculate distance between protein's center of mass and between every helix's center of mass."""
-    
+
     # Calculate protein's center of mass and centers of helices masses
     hel_COMs = _calc_COM_helix(chain, ref)
     prot_COM = _calc_COM_protein(atom_struct)
@@ -23,7 +23,7 @@ def _calc_prot_hel_dist(chain, atom_struct, ref):
 def calc_prot_hel_dist(pdb_file, ref):
     """
     Calculate distance between protein's center of mass and between every helix's center of mass.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -40,7 +40,7 @@ def calc_prot_hel_dist(pdb_file, ref):
 
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
 
@@ -58,7 +58,7 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
     Returns:
     -------
@@ -87,5 +87,6 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     if prothel is not None:
         for elem in prothel:
             data_prothel.append(elem)
-    df_prothel = df_prothel.append(pd.Series(data_prothel, index=cols_protheldist[0:len(data_prothel)]), ignore_index=True)
+    df_prothel = df_prothel.append(pd.Series(data_prothel, index=cols_protheldist[0:len(data_prothel)]), 
+                                    ignore_index=True)
     return df_prothel

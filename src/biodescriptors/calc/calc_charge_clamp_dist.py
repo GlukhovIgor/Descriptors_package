@@ -16,8 +16,11 @@ def _calc_charge_clamp_dist(chain, charge_clamps):
                     clamp_vectors[res.id[1]] = atom.get_vector()
     table = {}
     for elem in range(len(clamp_vectors)):
-        table[f'{charge_clamps[elem]}-{charge_clamps[elem-1]}'] = clamp_vectors[charge_clamps[elem]] - clamp_vectors[charge_clamps[elem-1]]
-    
+        table[f'{charge_clamps[elem]}-{charge_clamps[elem-1]}'] = (
+            clamp_vectors[charge_clamps[elem]] 
+            - clamp_vectors[charge_clamps[elem-1]]
+        )
+
     # calculation of distance between charge clamp residues
     dist = {}
 
@@ -43,11 +46,11 @@ def calc_charge_clamp_dist(pdb_file, charge_clamps):
     dict of pairwise distances between charge clamp residues.
 
     """
-    
+
     _, _, _, chain, _ = utils.get_model_and_structure(pdb_file)
     if not isinstance(charge_clamps, list):
         if charge_clamps is None:
-            raise ValueError(f"Charge clamp residues list is None!")
+            raise ValueError("Charge clamp residues list is None!")
         else:
             raise ValueError(f"Unexpected type for Charge clamp: {type(charge_clamps)}")
     return _calc_charge_clamp_dist(chain, charge_clamps)
@@ -56,7 +59,7 @@ def calc_charge_clamp_dist(pdb_file, charge_clamps):
 def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     """
     Putting distance between charge clamp residues in pandas dataframe.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -64,7 +67,7 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
     clamp_resid: list of ints
         Charge clamp residues list.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
     Returns:
     -------
@@ -87,10 +90,11 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
             print(f'{protein_name}: {e}')
         else:
             print(e)
-            
+
     cl_dist = [protein_name]
     if clamp_dist is not None:
         for elem in clamp_dist:
             cl_dist.append(clamp_dist[elem])
     df_cl_dist = df_cl_dist.append(pd.Series(cl_dist, index=cols_cl_dist[0:len(cl_dist)]), ignore_index=True)
     return df_cl_dist
+    

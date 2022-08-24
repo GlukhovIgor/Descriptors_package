@@ -9,7 +9,7 @@ def _calc_COM_clamp(chain, atom_struct, charge_clamps):
     """Calculate distances between protein's center of mass and every charge clamps."""
 
     atom_coord = []
-    com = np.array(_calc_COM_protein(atom_struct)) # We need here to calculate protein's center of mass
+    com = np.array(_calc_COM_protein(atom_struct))  # We need here to calculate protein's center of mass
 
     # Find charge clamps from user input in PDB structure and get it coordinates
     for res in chain:
@@ -18,8 +18,8 @@ def _calc_COM_clamp(chain, atom_struct, charge_clamps):
                 if atom.get_name() == 'CA':
                     atom_coord.append(atom.get_coord())
 
-    # Calculate distance between center of mass and every charge 
-    
+    # Calculate distance between center of mass and every charge
+
     ch_clamp_dist = []
     for elem in atom_coord:
         vect = np.array(elem) - np.array(com)
@@ -48,7 +48,7 @@ def calc_COM_clamp(pdb_file, charge_clamps):
 
     if not isinstance(charge_clamps, list):
         if charge_clamps is None:
-            raise ValueError(f"Charge clamp residues list is None!")
+            raise ValueError("Charge clamp residues list is None!")
         else:
             raise ValueError(f"Unexpected type for Charge clamp: {type(charge_clamps)}")
 
@@ -58,7 +58,7 @@ def calc_COM_clamp(pdb_file, charge_clamps):
 def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     """
     Putting distances between protein's center of mass and every charge clamps in pandas dataframe.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -74,7 +74,7 @@ def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
 
     """
     cols_comclampdist = ['prot_name'] + [f'Dist COM-clamp{i}' for i in range(1, 4)]
-    df_clamps = pd.DataFrame(columns=cols_comclampdist)    
+    df_clamps = pd.DataFrame(columns=cols_comclampdist)
     clamps = None
 
     try:
