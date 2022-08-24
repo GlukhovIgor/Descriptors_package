@@ -23,8 +23,8 @@ def _calc_charge_clamp_angles(chain, charge_clamps):
         angles[f'{charge_clamps[elem]}-{charge_clamps[elem - 1]}-{charge_clamps[elem - 2]}'] = (
             np.degrees(
                 PDB.vectors.calc_angle(
-                    clamp_vectors[charge_clamps[elem]], 
-                    clamp_vectors[charge_clamps[elem - 1]], 
+                    clamp_vectors[charge_clamps[elem]],
+                    clamp_vectors[charge_clamps[elem - 1]],
                     clamp_vectors[charge_clamps[elem - 2]]
                 )
             )
