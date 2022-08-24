@@ -30,7 +30,7 @@ def _calc_plane_angles(chain, l1, l2, l3):
     third_layer = sympy.Plane(*args)
 
     # Calculate and return angle between every layers
-    return [np.degrees(sympy.N(first_layer.angle_between(second_layer))), 
+    return [np.degrees(sympy.N(first_layer.angle_between(second_layer))),
             np.degrees(sympy.N(first_layer.angle_between(third_layer))),
             np.degrees(sympy.N(second_layer.angle_between(third_layer)))]
 

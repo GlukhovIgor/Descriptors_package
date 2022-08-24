@@ -104,6 +104,6 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     if alpha_angle is not None:
         for elem in alpha_angle:
             data_alphaagnle.append(elem)
-    df_alphaangle = df_alphaangle.append(pd.Series(data_alphaagnle, index=cols_angle[0:len(data_alphaagnle)]), 
-                                        ignore_index=True)
+    df_alphaangle = df_alphaangle.append(pd.Series(data_alphaagnle, index=cols_angle[0:len(data_alphaagnle)]),
+                                         ignore_index=True)
     return df_alphaangle

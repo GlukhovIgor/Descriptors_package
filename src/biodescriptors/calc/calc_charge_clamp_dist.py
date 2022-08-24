@@ -17,7 +17,7 @@ def _calc_charge_clamp_dist(chain, charge_clamps):
     table = {}
     for elem in range(len(clamp_vectors)):
         table[f'{charge_clamps[elem]}-{charge_clamps[elem-1]}'] = (
-            clamp_vectors[charge_clamps[elem]] 
+            clamp_vectors[charge_clamps[elem]]
             - clamp_vectors[charge_clamps[elem-1]]
         )
 
@@ -97,4 +97,3 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
             cl_dist.append(clamp_dist[elem])
     df_cl_dist = df_cl_dist.append(pd.Series(cl_dist, index=cols_cl_dist[0:len(cl_dist)]), ignore_index=True)
     return df_cl_dist
-    

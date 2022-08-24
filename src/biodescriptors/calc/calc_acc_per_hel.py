@@ -29,7 +29,7 @@ def _calc_acc_per_hel(dssp, ref):
 
     for i in range(len(helix_borders)):
         helices[i] = {
-            el: dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]] 
+            el: dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]]
             for el in range(helix_borders[i][0], helix_borders[i][1]+1)
         }
 
@@ -92,7 +92,6 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     cols_acc = ['prot_name'] + ['ACC H' + str(elem) for elem in range(1, 14)]
     df_acc = pd.DataFrame(columns=cols_acc)
-
 
     acc_hels = None
     try:

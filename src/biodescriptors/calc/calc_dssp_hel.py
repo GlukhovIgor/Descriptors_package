@@ -31,7 +31,7 @@ def _calc_dssp_hel(dssp, ref):
 # TODO: wrap in single func
 
         if dssp[list(dssp.keys())[start]][2] == 'H':
-        # check the first iteration
+            # check the first iteration
 
             while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
                 start_longer_counter += 1
@@ -109,7 +109,7 @@ def _calc_dssp_hel(dssp, ref):
                 if map_elem == extra_counter:
                     map_elem += 1
                 else:
-                    map_elem = extra_counter + 1  
+                    map_elem = extra_counter + 1
             else:
                 map_elem += 1
         else:
@@ -235,6 +235,6 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     data_extra_hels = [protein_name]
     if dssp_hels is not None:
         data_extra_hels.append(dssp_hels[1])
-    df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]), 
-                                ignore_index=True)
+    df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]),
+                               ignore_index=True)
     return df_extra

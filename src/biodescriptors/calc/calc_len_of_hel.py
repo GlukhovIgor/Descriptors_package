@@ -28,7 +28,7 @@ def _calc_len_of_hel(chain, ref):
 def calc_len_of_hel(pdb_file, ref):
     """
     Calculation of length of helices from structure.
-   
+
     Parameters:
     ----------
     pdb_file: str

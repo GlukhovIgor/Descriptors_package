@@ -136,4 +136,4 @@ def getRes(n, res_num):
         return res[idx]
     except ValueError:
         raise ValueError(f'{n} is not in a list of numbers!')
-        
+   
