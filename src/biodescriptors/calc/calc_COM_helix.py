@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 from biodescriptors.calc import constraints
 from biodescriptors.calc import utils
@@ -37,7 +36,7 @@ def calc_COM_helix(pdb_file, ref):
 
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
 

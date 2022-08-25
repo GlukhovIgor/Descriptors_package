@@ -1,8 +1,7 @@
-from Bio import PDB 
-import numpy as np
+from Bio import PDB
 import pandas as pd
 
-from biodescriptors.calc import constraints 
+from biodescriptors.calc import constraints
 from biodescriptors.calc import utils
 
 
@@ -10,7 +9,7 @@ def _calc_acc_per_hel(dssp, ref):
     """Calculating of solvent-accessibility area per helix, Å2."""
 
     helix_borders = []
-   
+
     res_num = utils.getResidues(dssp)
     for i in ref:
 
@@ -21,7 +20,7 @@ def _calc_acc_per_hel(dssp, ref):
 
     helices = dict()
     acc = dict()
-    
+
     for i in range(9, 255):
         if dssp[list(dssp.keys())[i]][1] == 'X':
             print(i)
@@ -29,8 +28,11 @@ def _calc_acc_per_hel(dssp, ref):
             print(dssp[list(dssp.keys())[i]][1])
 
     for i in range(len(helix_borders)):
-        helices[i] = {el : dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]] for el in range(helix_borders[i][0], helix_borders[i][1]+1)}
-    
+        helices[i] = {
+            el: dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]]
+            for el in range(helix_borders[i][0], helix_borders[i][1]+1)
+        }
+
     # calculation of solvent accessibility per helix according to data from dssp-file
     for key in helices.keys():
         for res in helices[key].keys():
@@ -41,7 +43,7 @@ def _calc_acc_per_hel(dssp, ref):
 
     for key, acc_sum in acc.items():
         acc[key] = acc_sum/(len(helices[key]))
-    
+
     # return dict with accessibility for every alpha-helix in structure
     return acc
 
@@ -65,7 +67,7 @@ def calc_acc_per_hel(pdb_file, ref):
     dssp = PDB.DSSP(model, pdb_file)
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_acc_per_hel(dssp, ref)
@@ -90,8 +92,6 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     cols_acc = ['prot_name'] + ['ACC H' + str(elem) for elem in range(1, 14)]
     df_acc = pd.DataFrame(columns=cols_acc)
-    
-
 
     acc_hels = None
     try:
@@ -107,11 +107,11 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
             print(f'{protein_name}: {e}')
         else:
             print(e)
-    
+
     data_acc = [protein_name]
     if acc_hels is not None:
         for acc in acc_hels:
             data_acc.append(acc_hels[acc])
-            
+
     df_acc = df_acc.append(pd.Series(data_acc, index=cols_acc[0:len(data_acc)]), ignore_index=True)
     return df_acc

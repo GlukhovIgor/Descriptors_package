@@ -8,7 +8,7 @@ from Bio import PDB
 logger = logging.getLogger(__name__)
 
 
-#_________________FUNCTIONS____________________________#
+# _________________FUNCTIONS____________________________ #
 
 def load_config(config_file):
     """
@@ -54,7 +54,7 @@ def load_config(config_file):
 def get_model_and_structure(pdb_file):
     """
     Initialize PDB structure.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -75,10 +75,10 @@ def get_model_and_structure(pdb_file):
 
 def getResidues(dssp):
     """Get residues and their indexes in order from dssp.
-    
+
     Parameters:
     ----------
-    dssp: PDB.DSSP 
+    dssp: PDB.DSSP
         pdb.dssp object, requires dssp module to be installed in the system.
 
     Returns:
@@ -96,10 +96,10 @@ def getResidues(dssp):
 
 def getNum(n, res_num):
     """Get order number of residue based on residue id number.
-    
+
     Parameters:
     ----------
-    n: int 
+    n: int
         residue id number.
     res_num: tuple of lists
         residues and order indexes, returned by getResidues.
@@ -115,12 +115,13 @@ def getNum(n, res_num):
     except ValueError:
         raise ValueError(f'{n} is not in a list of residues!')
 
+
 def getRes(n, res_num):
     """ Get residue id number based on order number of residue.
-    
+
     Parameters:
     ----------
-    n: int 
+    n: int
         position index of residue.
     res_num: tuple of lists
         residues and order indexes, returned by getResidues.

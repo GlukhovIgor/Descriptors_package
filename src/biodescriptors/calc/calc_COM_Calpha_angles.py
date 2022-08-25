@@ -7,10 +7,10 @@ from biodescriptors.calc import utils
 
 def _calc_COM_Calpha_angles(chain, atom_struct, ref):
     """Calculate angles between protein's center of mass and alpha carbon atom of every helix."""
-    
+
     # Initialize PDB structure
     protCOM = _calc_COM_protein(atom_struct)
-    helix_content = ref 
+    helix_content = ref
 
     # Calculate coordinates of alpha carbon atom of every helix
     CA_coords = []
@@ -32,7 +32,7 @@ def _calc_COM_Calpha_angles(chain, atom_struct, ref):
         OHel1 = elem[0] - np.array(protCOM)
         OHel2 = elem[1] - np.array(protCOM)
 
-        OHels = np.dot(OHel1,OHel2)
+        OHels = np.dot(OHel1, OHel2)
 
         OHel1abs = np.linalg.norm(OHel1)
         OHel2abs = np.linalg.norm(OHel2)
@@ -41,10 +41,9 @@ def _calc_COM_Calpha_angles(chain, atom_struct, ref):
 
 
 def calc_COM_Calpha_angles(pdb_file, ref):
-  #rename
     """
     Calculate angles between protein's center of mass and alpha carbon atom of every helix.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -60,7 +59,7 @@ def calc_COM_Calpha_angles(pdb_file, ref):
     _, _, _, chain, atom_struct = utils.get_model_and_structure(pdb_file)
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_COM_Calpha_angles(chain, atom_struct, ref)
@@ -69,7 +68,7 @@ def calc_COM_Calpha_angles(pdb_file, ref):
 def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting angles between protein's center of mass and alpha carbon atom of every helix in pandas dataframe.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -77,7 +76,7 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
     Returns:
     -------
@@ -100,10 +99,11 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
             print(f'{protein_name}: {e}')
         else:
             print(e)
-            
+
     data_alphaagnle = [protein_name]
     if alpha_angle is not None:
         for elem in alpha_angle:
             data_alphaagnle.append(elem)
-    df_alphaangle = df_alphaangle.append(pd.Series(data_alphaagnle, index=cols_angle[0:len(data_alphaagnle)]), ignore_index=True)
+    df_alphaangle = df_alphaangle.append(pd.Series(data_alphaagnle, index=cols_angle[0:len(data_alphaagnle)]),
+                                         ignore_index=True)
     return df_alphaangle

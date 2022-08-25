@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 from biodescriptors.calc import constraints
 from biodescriptors.calc import utils
@@ -7,10 +6,10 @@ from biodescriptors.calc import utils
 
 def _calc_COM_for_planes(chain, helices):
     """Calculate center of mass for every "sandwich layer" of VDR structure. Helices - list of layer's helices."""
-    
+
     # Calculate center of mass for every helix
     hel_COM = []
-    
+
     for elem in helices:
         helix_content = [list(elem)]
         helix_mass = 0
@@ -23,7 +22,7 @@ def _calc_COM_for_planes(chain, helices):
 
                 for atom in residue.get_atoms():
                     weight = constraints.ATOMIC_WEIGHTS[atom.get_name()[0]]
-                    helix_mass += weight # Calculate helix total mass
+                    helix_mass += weight  # Calculate helix total mass
                     # Calculate product of atom coordinate and weight
                     weighted_coord.append([coord * weight for coord in list(atom.get_coord())])
             # Calculate helix center of mass
@@ -54,7 +53,7 @@ def calc_COM_for_planes(pdb_file, helices):
 
 def COM_for_planes_to_pandas(pdb_file, helices, protein_name=None):
     """Putting center of mass for every "sandwich layer" of VDR structure in pandas dataframe.
-    
+
     Parameters:
     ----------
     pdb_file: str
@@ -66,7 +65,7 @@ def COM_for_planes_to_pandas(pdb_file, helices, protein_name=None):
 
     Returns:
     -------
-    
+
     """
 # not implemented yet
     return None
