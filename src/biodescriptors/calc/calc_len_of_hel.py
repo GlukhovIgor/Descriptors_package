@@ -29,14 +29,14 @@ def calc_len_of_hel(pdb_file, ref):
     """
     Calculation of length of helices from structure.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of lengths of helices.
 
@@ -56,7 +56,7 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting length of helices from structure in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -65,7 +65,7 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

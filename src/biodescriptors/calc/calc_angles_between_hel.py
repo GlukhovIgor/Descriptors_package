@@ -29,14 +29,14 @@ def _calc_angles_between_hel(chain, ref):
 def calc_angles_between_hel(pdb_file, ref):
     """Calculation of angles between all helices in structure.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of pairwise angles lists between helices.
 
@@ -53,7 +53,7 @@ def calc_angles_between_hel(pdb_file, ref):
 def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """Putting angles between all helices in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -62,7 +62,7 @@ def angles_between_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

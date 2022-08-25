@@ -126,14 +126,14 @@ def calc_dssp_hel(pdb_file, ref):
     """
     Calculates differences with DSSP output.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of lists (int, int)
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     ???.
 
@@ -152,7 +152,7 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting differences in structure with dssp module in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -161,7 +161,7 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
@@ -200,7 +200,7 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting differences with DSSP in pandas dataframe (extra).
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -209,7 +209,7 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

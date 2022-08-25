@@ -26,14 +26,14 @@ def calc_pairwise_sep_dist(pdb_file, ref):
     """
     Calculate separation distance between every helix.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of pairwise separation distances lists between helices.
 
@@ -53,7 +53,7 @@ def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting separation distance between every helix in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -62,7 +62,7 @@ def pairwise_sep_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

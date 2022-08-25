@@ -32,14 +32,14 @@ def calc_COM_clamp(pdb_file, charge_clamps):
     """
     Calculate distances between protein's center of mass and every charge clamps.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     charge_clamps: list of ints
         Charge clamp residues list.
 
-    Returns:
+    Returns
     -------
     list of distances between protein's center of mass and every charge clamps.
 
@@ -59,7 +59,7 @@ def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     """
     Putting distances between protein's center of mass and every charge clamps in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -68,7 +68,7 @@ def COM_clamp_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
