@@ -27,12 +27,12 @@ def _calc_COM_protein(atom_struct):
 def calc_COM_protein(pdb_file):
     """Calculate protein's center of mass.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
 
-    Returns:
+    Returns
     -------
     list of ints: coordinates of centeres of mass for the protein.
     """
@@ -44,14 +44,14 @@ def calc_COM_protein(pdb_file):
 def COM_protein_to_pandas(pdb_file, protein_name=None):
     """Putting protein's center of mass in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
 
     """

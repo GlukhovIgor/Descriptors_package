@@ -34,14 +34,14 @@ def _calc_COM_for_planes(chain, helices):
 def calc_COM_for_planes(pdb_file, helices):
     """Calculate center of mass for every "sandwich layer" of VDR structure. Helices - list of layer's helices.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     helices: list of ints
         list of layer's helices.
 
-    Returns:
+    Returns
     -------
     list of distances between protein's center of mass and every charge clamps.
 
@@ -54,7 +54,7 @@ def calc_COM_for_planes(pdb_file, helices):
 def COM_for_planes_to_pandas(pdb_file, helices, protein_name=None):
     """Putting center of mass for every "sandwich layer" of VDR structure in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -63,7 +63,7 @@ def COM_for_planes_to_pandas(pdb_file, helices, protein_name=None):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
 
     """

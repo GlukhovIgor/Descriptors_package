@@ -18,7 +18,7 @@ def load_config(config_file):
 
     Examples of all configs can be found in /configs.
 
-    Parameters:
+    Parameters
     ----------
     config_file: str or dict
         If str is passed, config_file is interpreted as path to a file.
@@ -55,12 +55,12 @@ def get_model_and_structure(pdb_file):
     """
     Initialize PDB structure.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
 
-    Returns:
+    Returns
     -------
     tuple: parser, structure, model, chain, atom_structure.
 
@@ -76,12 +76,12 @@ def get_model_and_structure(pdb_file):
 def getResidues(dssp):
     """Get residues and their indexes in order from dssp.
 
-    Parameters:
+    Parameters
     ----------
     dssp: PDB.DSSP
         pdb.dssp object, requires dssp module to be installed in the system.
 
-    Returns:
+    Returns
     -------
     tuple of lists: list of residues and list of indexes.
 
@@ -97,13 +97,13 @@ def getResidues(dssp):
 def getNum(n, res_num):
     """Get order number of residue based on residue id number.
 
-    Parameters:
+    Parameters
     ----------
     n: int
         residue id number.
     res_num: tuple of lists
         residues and order indexes, returned by getResidues.
-    Returns:
+    Returns
     -------
     int: position number of this residue.
 
@@ -119,13 +119,13 @@ def getNum(n, res_num):
 def getRes(n, res_num):
     """ Get residue id number based on order number of residue.
 
-    Parameters:
+    Parameters
     ----------
     n: int
         position index of residue.
     res_num: tuple of lists
         residues and order indexes, returned by getResidues.
-    Returns:
+    Returns
     -------
     int: residue id.
 

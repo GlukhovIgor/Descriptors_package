@@ -46,7 +46,7 @@ def calc_COM_helix(pdb_file, ref):
 def COM_helix_to_pandas(pdb_file, ref, protein_name=None):
     """Putting center of mass for every helix in PDB structure in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -55,7 +55,7 @@ def COM_helix_to_pandas(pdb_file, ref, protein_name=None):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
 
     """

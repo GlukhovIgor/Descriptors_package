@@ -44,14 +44,14 @@ def calc_COM_Calpha_angles(pdb_file, ref):
     """
     Calculate angles between protein's center of mass and alpha carbon atom of every helix.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of angles between helices and protein center of mass.
 
@@ -69,7 +69,7 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting angles between protein's center of mass and alpha carbon atom of every helix in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -78,7 +78,7 @@ def COM_Calpha_angles_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

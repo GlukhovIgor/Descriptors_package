@@ -39,7 +39,7 @@ def calc_plane_angles(pdb_file, l1, l2, l3):
     """Calculate angles between every layer.
     l1, l2, l3 - lists which contain helices numbers for every "sandwich layer" of VDR structure.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -50,7 +50,7 @@ def calc_plane_angles(pdb_file, l1, l2, l3):
     l3: list of ints
         List of helices numbers for sandwich layer 1.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
@@ -62,7 +62,7 @@ def calc_plane_angles(pdb_file, l1, l2, l3):
 def plane_angles_to_pandas(pdb_file, l1, l2, l3, protein_name=None):
     """Putting angles between every layer in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -75,7 +75,7 @@ def plane_angles_to_pandas(pdb_file, l1, l2, l3, protein_name=None):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
 
     """

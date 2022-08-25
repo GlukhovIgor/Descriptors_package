@@ -52,13 +52,13 @@ def calc_acc_per_hel(pdb_file, ref):
     """
     Calculating of solvent-accessibility area per helix, Å2. Requires DSSP module.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
-    Returns:
+    Returns
     -------
     dict with accessibility for every alpha-helix in structure.
 """
@@ -76,7 +76,7 @@ def calc_acc_per_hel(pdb_file, ref):
 def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """Putting solvent-accessibility area per helix in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -85,7 +85,7 @@ def acc_per_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

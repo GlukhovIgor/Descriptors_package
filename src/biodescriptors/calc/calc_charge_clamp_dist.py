@@ -34,14 +34,14 @@ def calc_charge_clamp_dist(pdb_file, charge_clamps):
     """
     Calculation of distance between charge clamp residues.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     charge_clamps: list of ints
         Charge clamp residues list.
 
-    Returns:
+    Returns
     -------
     dict of pairwise distances between charge clamp residues.
 
@@ -60,7 +60,7 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
     """
     Putting distance between charge clamp residues in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -69,7 +69,7 @@ def charge_clamp_dist_to_pandas(pdb_file, clamp_resid, protein_name=None, **kwar
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

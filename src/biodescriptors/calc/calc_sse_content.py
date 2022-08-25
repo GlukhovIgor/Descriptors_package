@@ -34,12 +34,12 @@ def calc_sse_content(pdb_file):
     """
     Calculation of secondary structure content.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
 
-    Returns:
+    Returns
     -------
     dict of all possible secondary structures and counting their percentage.
 
@@ -53,14 +53,14 @@ def sse_content_to_pandas(pdb_file, protein_name=None, **kwargs):
     """
     Putting secondary structure content in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

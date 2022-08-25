@@ -24,14 +24,14 @@ def calc_prot_hel_dist(pdb_file, ref):
     """
     Calculate distance between protein's center of mass and between every helix's center of mass.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of  distances lists between helices and protein center of mass.
 
@@ -51,7 +51,7 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting distance between protein's center of mass and between every helix's center of mass in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -60,7 +60,7 @@ def prot_hel_dist_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 

@@ -16,7 +16,7 @@ class DescCalculator:
         """
         Initialize calculator.
 
-        Parameters:
+        Parameters
         ----------
         clamp_resid: list of ints, default=None
             Charge clamp residues list.
@@ -34,11 +34,11 @@ class DescCalculator:
         """
         Forms pandas dataframe with all statistics for single file.
 
-        Parameters:
+        Parameters
         ----------
         filename: str
             Name of .pdb file for which descriptors will be calculated.
-        Returns:
+        Returns
         -------
         pandas.DataFrame with calculated descriptors.
 
@@ -76,7 +76,7 @@ class DescCalculator:
         """
         Forms pandas dataframe with all statistics for all files in filedir and saves it to .csv.
 
-        Parameters:
+        Parameters
         ----------
         filedir: str
             Path to folder with all .PDB files for which frame will be constructed.
@@ -86,7 +86,8 @@ class DescCalculator:
             Path where resulting frame with descriptors will be saved.
         parallel: bool, default=False
             Whether to use parallelization for calculation of descriptors for multiple files.
-        Returns:
+
+        Returns
         -------
         pandas.DataFrame with calculated descriptors.
 
@@ -110,7 +111,6 @@ class DescCalculator:
         if save_to_csv:
             final_df.to_csv(output_full_path, index=False)
         return final_df
-
 
 # ____________NAME_TO_DESCRIPTOR_MAPPING________________ #
 

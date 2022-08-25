@@ -37,14 +37,14 @@ def calc_charge_clamp_angles(pdb_file, charge_clamps):
     """
     Calculation of angles between charge clamp residues.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     charge_clamps: list of ints
         Charge clamp residues list.
 
-    Returns:
+    Returns
     -------
     dict of angles.
 
@@ -63,7 +63,7 @@ def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kw
     """
     Putting angles between charge clamp residues in pandas dataframe.
 
-    Parameters:
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -72,7 +72,7 @@ def charge_clamp_angles_to_pandas(pdb_file, clamp_resid, protein_name=None, **kw
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
