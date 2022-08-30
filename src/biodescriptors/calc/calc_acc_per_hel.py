@@ -20,11 +20,11 @@ def _calc_acc_per_hel(dssp, ref):
     helices = dict()
     acc = dict()
     
-    for i in range(9, 255):
-        if dssp[list(dssp.keys())[i]][1] == 'X':
-            print(i)
-            print(dssp.keys()[i])
-            print(dssp[list(dssp.keys())[i]][1])
+    #for i in range(len(dssp.keys())):
+    #    if dssp[list(dssp.keys())[i]][1] == 'X':
+    #        print(i)
+    #        print(dssp.keys()[i])
+    #        print(dssp[list(dssp.keys())[i]][1])
 
     for i in range(len(helix_borders)):
         helices[i] = {el : dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]] for el in range(helix_borders[i][0], helix_borders[i][1]+1)}
