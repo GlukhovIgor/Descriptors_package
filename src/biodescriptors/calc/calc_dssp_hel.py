@@ -33,7 +33,7 @@ def _calc_dssp_hel(dssp, ref):
         if dssp[list(dssp.keys())[start]][2] in ['H', 'G']:
           # check the first iteration
             while dssp[list(dssp.keys())[start-1]][2] in ['H', 'G'] and utils.getRes(start-1, res_num) != dssp_end:
-                start_longer_counter+=1
+                start_longer_counter += 1
                 start-=1
             missing=False
         else:
