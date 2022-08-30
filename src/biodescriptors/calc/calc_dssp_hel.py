@@ -2,12 +2,11 @@ from Bio import PDB
 import numpy as np
 import pandas as pd
 
-from biodescriptors.calc import constraints
 from biodescriptors.calc import utils
 
 
 def _calc_dssp_hel(dssp, ref):
-    """TODO: Documentation"""
+    """Calculate differences with dssp module."""
 #     TODO: Split function into smaller functions
     chainA = [key for key in dssp.keys() if key[0] == 'A']
     helix_map = np.zeros([1, len(chainA)])
@@ -16,16 +15,16 @@ def _calc_dssp_hel(dssp, ref):
     dssp_end = 0
     result = []
 
-    #print(res_num)
+    # print(res_num)
 
     for i in range(len(ref)):
 
-        #print(ref[i][0])
+        # print(ref[i][0])
 
         start = utils.getNum(ref[i][0], res_num)
         end = utils.getNum(ref[i][1], res_num)
 
-        #finding starting point
+        # finding starting point
         start_longer_counter = 0
         start_shorter_counter = 0
 
@@ -41,21 +40,22 @@ def _calc_dssp_hel(dssp, ref):
             missing_counter = 0
             missing = True
             while missing_counter < (end-start):
+
                 start+=1
                 start_shorter_counter+=1
                 if dssp[list(dssp.keys())[start]][2] in ['H', 'G']:
                     missing = False
                     break
                 else:
-                    missing_counter +=1
-# 
+                    missing_counter += 1
 
-        #finding endpoint
-        if missing == False:
+        # finding endpoint
+        if missing is False:
             end_longer_counter = 0
             end_shorter_counter = 0
             if dssp[list(dssp.keys())[end]][2] in ['H', 'G']:
                 if i != (len(ref)-1):
+
                     while dssp[list(dssp.keys())[end+1]][2] in ['H', 'G'] and end+1 != utils.getNum(ref[i+1][0], res_num):
                         end_longer_counter+=1
                         end+=1
@@ -63,12 +63,14 @@ def _calc_dssp_hel(dssp, ref):
                     while dssp[list(dssp.keys())[end+1]][2] in ['H', 'G']:
                         end_longer_counter+=1
                         end+=1
+
                         try:
                             dssp[list(dssp.keys())[end+1]][2] in ['H', 'G']
                         except IndexError:
                             break
 
             else:
+
                 while dssp[list(dssp.keys())[end]][2] not in ['H', 'G']:
                     end-=1
                     end_shorter_counter+=1
@@ -92,28 +94,31 @@ def _calc_dssp_hel(dssp, ref):
             result.append([0, 0])
 
     extras = []
-    map_elem=0
+    map_elem = 0
 
 # TODO: wrap
     while map_elem < helix_map.shape[1]:
         if helix_map[0][map_elem] == 0:
             if dssp[list(dssp.keys())[map_elem]][2] in ['H', 'G']:
                 extra_counter = map_elem
+
                 while dssp[list(dssp.keys())[extra_counter+1]][2] in ['H', 'G']:
                     extra_counter+=1
+
                 extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
+
                 if map_elem == extra_counter:
-                    map_elem+=1
+                    map_elem += 1
                 else:
-                    map_elem=extra_counter+1  
+                    map_elem = extra_counter + 1
             else:
-                map_elem+=1
+                map_elem += 1
         else:
-            map_elem+=1   
+            map_elem += 1
 
         n_res = 0
         for e in extras:
-            n_res+=e[1]-e[0]+1
+            n_res += e[1]-e[0]+1
 
     return result, n_res
 
@@ -121,15 +126,15 @@ def _calc_dssp_hel(dssp, ref):
 def calc_dssp_hel(pdb_file, ref):
     """
     Calculates differences with DSSP output.
-    
-    Parameters:
+
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of lists (int, int)
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     ???.
 
@@ -138,17 +143,17 @@ def calc_dssp_hel(pdb_file, ref):
     dssp = PDB.DSSP(model, pdb_file)
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
     return _calc_dssp_hel(dssp, ref)
 
 
 def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
-    """TODO: write documentation.
-    Putting differences with dssp in pandas dataframe.
-    
-    Parameters:
+    """
+    Putting differences in structure with dssp module in pandas dataframe.
+
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -157,12 +162,12 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
     """
-    cols_dssp = (['prot_name'] 
+    cols_dssp = (['prot_name']
                  + ['DSSP start_H' + str(elem) for elem in range(1, 14)]
                  + ['DSSP end_H' + str(elem) for elem in range(1, 14)])
     df_dssp = pd.DataFrame(columns=cols_dssp)
@@ -171,9 +176,16 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         dssp_hels = calc_dssp_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating dssp')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating dssp')
+        else:
+            print('KeyError while calculating dssp')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_dssp_hels = [protein_name]
     if dssp_hels is not None:
@@ -188,8 +200,8 @@ def dssp_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
 def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting differences with DSSP in pandas dataframe (extra).
-    
-    Parameters:
+
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
@@ -198,7 +210,7 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
@@ -210,11 +222,20 @@ def dssp_extra_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         dssp_hels = calc_dssp_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating dssp')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating dssp')
+        else:
+            print('KeyError while calculating dssp')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_extra_hels = [protein_name]
-    data_extra_hels.append(dssp_hels[1])
-    df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]), ignore_index=True)
+    if dssp_hels is not None:
+        data_extra_hels.append(dssp_hels[1])
+    df_extra = df_extra.append(pd.Series(data_extra_hels, index=cols_extra_res[0:len(data_extra_hels)]),
+                               ignore_index=True)
     return df_extra

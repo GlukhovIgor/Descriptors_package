@@ -5,6 +5,7 @@ from tqdm import tqdm
 
 from biodescriptors import calc
 
+
 class DescCalculator:
 
     def __init__(
@@ -15,8 +16,8 @@ class DescCalculator:
     ):
         """
         Initialize calculator.
-        
-        Parameters:
+
+        Parameters
         ----------
         clamp_resid: list of ints, default=None
             Charge clamp residues list.
@@ -34,11 +35,11 @@ class DescCalculator:
         """
         Forms pandas dataframe with all statistics for single file.
 
-        Parameters:
+        Parameters
         ----------
         filename: str
             Name of .pdb file for which descriptors will be calculated.
-        Returns:
+        Returns
         -------
         pandas.DataFrame with calculated descriptors.
 
@@ -63,28 +64,31 @@ class DescCalculator:
 
         for descriptors_frame in descriptors_frames_list:
             df = df.merge(descriptors_frame, on='prot_name')
-            
-        return df
 
+        return df
 
     def calc_all(
         self,
         filedir,
         save_to_csv=True,
         output_full_path=None,
+        parallel=False
     ):
         """
         Forms pandas dataframe with all statistics for all files in filedir and saves it to .csv.
 
-        Parameters:
+        Parameters
         ----------
         filedir: str
             Path to folder with all .PDB files for which frame will be constructed.
         save_to_csv: bool, default=True
             If true, then resulting dataframe is saved to .csv file based on output_full_path parameter.
-        output_full_path: str, default
+        output_full_path: str, default=None
             Path where resulting frame with descriptors will be saved.
-        Returns:
+        parallel: bool, default=False
+            Whether to use parallelization for calculation of descriptors for multiple files.
+
+        Returns
         -------
         pandas.DataFrame with calculated descriptors.
 
@@ -94,18 +98,22 @@ class DescCalculator:
         number_files = len(full_filenames)
 
         results_dfs = []
-        with mp.Pool() as pool:
-            for result in tqdm(pool.imap(self.calc_single_file, full_filenames), total=number_files):
-                results_dfs.append(result)
-        
+        if parallel:
+            with mp.Pool() as pool:
+                for result in tqdm(pool.imap(self.calc_single_file, full_filenames), total=number_files):
+                    results_dfs.append(result)
+        else:
+            for filename in tqdm(full_filenames):
+                print((f'calculating structure - {filename}'))
+                results_dfs.append(self.calc_single_file(filename))
+
         final_df = pd.concat(results_dfs, ignore_index=True)
-        
+
         if save_to_csv:
             final_df.to_csv(output_full_path, index=False)
         return final_df
 
-
-#____________NAME_TO_DESCRIPTOR_MAPPING________________#
+# ____________NAME_TO_DESCRIPTOR_MAPPING________________ #
 
 
 NAME_TO_FUNC_MAPPING = {

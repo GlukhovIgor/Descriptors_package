@@ -4,8 +4,8 @@ from biodescriptors.calc import utils
 
 
 def _calc_len_of_hel(chain, ref):
-    """Calculation of length of helices from structure"""
-    
+    """Calculation of length of helices from structure."""
+
     helix_borders = ref
 
     # extracting vectors of coordinates for every border
@@ -28,15 +28,15 @@ def _calc_len_of_hel(chain, ref):
 def calc_len_of_hel(pdb_file, ref):
     """
     Calculation of length of helices from structure.
-        
-    Parameters:
+
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
 
-    Returns:
+    Returns
     -------
     list of lengths of helices.
 
@@ -45,7 +45,7 @@ def calc_len_of_hel(pdb_file, ref):
 
     if not isinstance(ref, list):
         if ref is None:
-            raise ValueError(f"Ref list is None!")
+            raise ValueError("Ref list is None!")
         else:
             raise ValueError(f"Unexpected type for ref: {type(ref)}")
 
@@ -55,17 +55,17 @@ def calc_len_of_hel(pdb_file, ref):
 def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     """
     Putting length of helices from structure in pandas dataframe.
-        
-    Parameters:
+
+    Parameters
     ----------
     pdb_file: str
         Filename of .pdb file used for calculation.
     ref: list of ints
         List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
-        Protein name to be added to the resulting dataframe. 
+        Protein name to be added to the resulting dataframe.
 
-    Returns:
+    Returns
     -------
     pandas.DataFrame with calculated descriptor.
 
@@ -77,9 +77,16 @@ def len_of_hel_to_pandas(pdb_file, ref, protein_name=None, **kwargs):
     try:
         lens_hels = calc_len_of_hel(pdb_file, ref)
     except KeyError:
-        print('KeyError while calculating len of hel')
+        if protein_name:
+            print(f'{protein_name}: KeyError while calculating len of hel')
+        else:
+            print('KeyError while calculating len of hel')
+
     except ValueError as e:
-        print(e)
+        if protein_name:
+            print(f'{protein_name}: {e}')
+        else:
+            print(e)
 
     data_lens = [protein_name]
     if lens_hels is not None:
