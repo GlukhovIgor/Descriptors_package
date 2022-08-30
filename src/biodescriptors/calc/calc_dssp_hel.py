@@ -30,21 +30,20 @@ def _calc_dssp_hel(dssp, ref):
 
 # TODO: wrap in single func
 
-        if dssp[list(dssp.keys())[start]][2] == 'H':
-            # check the first iteration
-
-            while dssp[list(dssp.keys())[start-1]][2] == 'H' and utils.getRes(start-1, res_num) != dssp_end:
-                start_longer_counter += 1
-                start -= 1
-            missing = False
-
+        if dssp[list(dssp.keys())[start]][2] in ['H', 'G']:
+          # check the first iteration
+            while dssp[list(dssp.keys())[start-1]][2] in ['H', 'G'] and utils.getRes(start-1, res_num) != dssp_end:
+                start_longer_counter+=1
+                start-=1
+            missing=False
         else:
             missing_counter = 0
             missing = True
             while missing_counter < (end-start):
-                start += 1
-                start_shorter_counter += 1
-                if dssp[list(dssp.keys())[start]][2] == 'H':
+
+                start+=1
+                start_shorter_counter+=1
+                if dssp[list(dssp.keys())[start]][2] in ['H', 'G']:
                     missing = False
                     break
                 else:
@@ -54,26 +53,27 @@ def _calc_dssp_hel(dssp, ref):
         if missing is False:
             end_longer_counter = 0
             end_shorter_counter = 0
-            if dssp[list(dssp.keys())[end]][2] == 'H':
+            if dssp[list(dssp.keys())[end]][2] in ['H', 'G']:
                 if i != (len(ref)-1):
 
-                    while dssp[list(dssp.keys())[end+1]][2] == 'H' and end+1 != utils.getNum(ref[i+1][0], res_num):
-                        end_longer_counter += 1
-                        end += 1
-
+                    while dssp[list(dssp.keys())[end+1]][2] in ['H', 'G'] and end+1 != utils.getNum(ref[i+1][0], res_num):
+                        end_longer_counter+=1
+                        end+=1
                 else:
-                    while dssp[list(dssp.keys())[end+1]][2] == 'H':
-                        end_longer_counter += 1
-                        end += 1
+                    while dssp[list(dssp.keys())[end+1]][2] in ['H', 'G']:
+                        end_longer_counter+=1
+                        end+=1
+
                         try:
-                            dssp[list(dssp.keys())[end+1]][2] == 'H'
+                            dssp[list(dssp.keys())[end+1]][2] in ['H', 'G']
                         except IndexError:
                             break
 
             else:
-                while dssp[list(dssp.keys())[end]][2] != 'H':
-                    end -= 1
-                    end_shorter_counter += 1
+
+                while dssp[list(dssp.keys())[end]][2] not in ['H', 'G']:
+                    end-=1
+                    end_shorter_counter+=1
 
             if start_shorter_counter > 0:
                 dssp_start = ref[i][0] + start_shorter_counter
@@ -99,10 +99,11 @@ def _calc_dssp_hel(dssp, ref):
 # TODO: wrap
     while map_elem < helix_map.shape[1]:
         if helix_map[0][map_elem] == 0:
-            if dssp[list(dssp.keys())[map_elem]][2] == 'H':
+            if dssp[list(dssp.keys())[map_elem]][2] in ['H', 'G']:
                 extra_counter = map_elem
-                while dssp[list(dssp.keys())[extra_counter+1]][2] == 'H':
-                    extra_counter += 1
+
+                while dssp[list(dssp.keys())[extra_counter+1]][2] in ['H', 'G']:
+                    extra_counter+=1
 
                 extras.append([utils.getRes(map_elem, res_num), utils.getRes(extra_counter, res_num)])
 

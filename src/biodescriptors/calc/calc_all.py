@@ -7,6 +7,7 @@ from biodescriptors import calc
 
 
 class DescCalculator:
+
     def __init__(
         self,
         ref=None,
