@@ -20,7 +20,7 @@ def _calc_acc_per_hel(dssp, ref):
 
     helices = dict()
     acc = dict()
-    
+
     # for i in range(len(dssp.keys())):
     #    if dssp[list(dssp.keys())[i]][1] == 'X':
     #        print(i)
