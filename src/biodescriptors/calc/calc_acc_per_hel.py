@@ -27,7 +27,6 @@ def _calc_acc_per_hel(dssp, ref):
     #        print(dssp.keys()[i])
     #        print(dssp[list(dssp.keys())[i]][1])
 
-
     for i in range(len(helix_borders)):
         helices[i] = {
             el: dssp[list(dssp.keys())[el]][3] * constraints.RES_MAX_ACC[dssp[list(dssp.keys())[el]][1]]
