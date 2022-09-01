@@ -54,6 +54,10 @@ Several descriptors require DSSP module to be installed, this can be done using:
 
 `sudo apt-get install dssp`
 
+For developers - 
+
+  `pip install -e . -r requirements_dev.txt`
+  
 ## Usage
 
 To see an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
