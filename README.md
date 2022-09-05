@@ -21,7 +21,7 @@ The structure of the package and detailed description of each function could be 
 
 To see an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
 
-To see an example of analysis that can be performed using the output of this package, see [`analysis_example.ipynb`](usage_example.ipynb)
+To see an example of analysis that can be performed using the output of this package, see `analysis_example.ipynb`
 
 
 ## Authors
