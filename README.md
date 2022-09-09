@@ -16,7 +16,10 @@ Additionally one may need KPAX software for providing user settings for protein 
 
 The structure of the package and detailed description of each function could be found here: https://glukhovigor.github.io/Descriptors_package/biodescriptors.html
 
+For developers - 
 
+  `pip install -e . -r requirements_dev.txt`
+  
 ## Usage
 
 To see an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
