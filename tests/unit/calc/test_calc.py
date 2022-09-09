@@ -48,12 +48,12 @@ def test_calc_COM_protein():
         assert ans[i] == elem, assert_out_str
 
 
-# def test_calc_angles_between_hel():    
+# def test_calc_angles_between_hel():
 #     ans = [calc_angles_between_hel(test_structure, href)]
 #     correct_ans = [
-#         [approx(49.5, rel=0.1), 
+#         [approx(49.5, rel=0.1),
 #          approx(148.37, rel=0.1)
-#         ], 
+#         ],
 #         approx(125.10, rel=0.1)
 #     ]
 #     pprint(ans)
@@ -70,7 +70,7 @@ def test_calc_COM_helix():
         for j, elem2 in enumerate(elem[0]):
             assert_out_str = (
                 "Value {0} at index [{1}][0][{2}] doesn't fall into expected range: {3}"
-                .format(round(ans[i][0][j], 2), 
+                .format(round(ans[i][0][j], 2),
                         i,
                         j,
                         elem2)
