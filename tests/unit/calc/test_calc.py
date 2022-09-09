@@ -1,4 +1,4 @@
-from biodescriptors.calc import *
+from biodescriptors import calc
 from pytest import approx
 
 
@@ -7,7 +7,7 @@ href = [[127,142], [149,152], [226,246]]
 
 
 def test_calc_len_of_hel():    
-    ans = calc_len_of_hel(test_structure, href)
+    ans = calc.calc_len_of_hel(test_structure, href)
     correct_ans = [approx(x, rel=0.1) for x in [22.6, 5.6, 30.5]]
     for i, elem in enumerate(correct_ans):
         assert_out_str = (
@@ -21,7 +21,7 @@ def test_calc_len_of_hel():
 
 
 def test_calc_COM_Calpha_angles():    
-    ans = calc_COM_Calpha_angles(test_structure, href)
+    ans = calc.calc_COM_Calpha_angles(test_structure, href)
     correct_ans = [approx(x, rel=0.1) for x in [61.0, 14.2, 120.5]]
     for i, elem in enumerate(correct_ans):
         assert_out_str = (
@@ -35,7 +35,7 @@ def test_calc_COM_Calpha_angles():
 
 
 def test_calc_COM_protein():    
-    ans = calc_COM_protein(test_structure)
+    ans = calc.calc_COM_protein(test_structure)
     correct_ans = [approx(x, rel=0.1) for x in [13.360, 20.776, 42.003]]
     for i, elem in enumerate(correct_ans):
         assert_out_str = (
@@ -62,7 +62,7 @@ def test_calc_COM_protein():
 
 
 def test_calc_COM_helix():    
-    ans = calc_COM_helix(test_structure, href)
+    ans = calc.calc_COM_helix(test_structure, href)
     correct_ans = [[[approx(x, rel=0.1) for x in [18.888, 6.445, 50.056]]],
                    [[approx(x, rel=0.1) for x in [10.596, 10.219, 26.464]]],
                    [[approx(x, rel=0.1) for x in [7.358, 15.986, 35.683]]]]
@@ -79,7 +79,7 @@ def test_calc_COM_helix():
 
 
 def test_calc_prot_hel_dist():    
-    ans = calc_prot_hel_dist(test_structure, href)
+    ans = calc.calc_prot_hel_dist(test_structure, href)
     correct_ans = [approx(x, rel=0.1) for x in [17.6, 18.4, 9.9]]
     for i, elem in enumerate(correct_ans):
         assert_out_str = (
