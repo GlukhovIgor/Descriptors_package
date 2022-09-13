@@ -33,7 +33,7 @@ df = calculator.calc_all(<DIRECTORY_NAME>, save_to_csv=False, parallel=False)
 ```
 
 
-For instance, using plotly, one can easily compare descriptor profiles of the given PDB structures with polar charts. Here you can see an example of comparison of the vitamin D receptor datasets for three different species - note the differences in the same descriptors for different species. Also for human, we can see the structure that can be considered as an outlier as its values are higher for majority of descriptors.
+Afterwards, the produced dataframes can be analysed several ways.For instance, one can easily compare descriptor profiles of the given PDB structures with polar charts from plotly. Here you can see an example of comparison of the vitamin D receptor datasets for three different species - note the differences in the same descriptors for different species. Also for human, we can see the structure that can be considered as an outlier as its values are higher for majority of descriptors.
 
 <img src="https://github.com/GlukhovIgor/Descriptors_package/blob/readme/docs/profiles.png"  width="700" height="240">
 
