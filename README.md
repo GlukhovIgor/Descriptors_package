@@ -24,6 +24,15 @@ For developers -
 
 Our tool allows to analyse the structure of PDB files in terms of structural descriptors implemented.
 
+To run the calculations one needs to have the data in PDB format and its secondary structure annotation in the list format.
+Charge clamp residues are optional, one can set up a personal configuration file to turn off the calculation of these descriptors.
+
+```
+calculator = DescCalculator(<ANNOTATION>, <RESIDUES OF CHARGE CLAMP>, <CONFIG>)
+df = calculator.calc_all(<DIRECTORY_NAME>, save_to_csv=False, parallel=False)
+```
+
+
 For instance, using plotly, one can easily compare descriptor profiles of the given PDB structures with polar charts. Here you can see an example of comparison of the vitamin D receptor datasets for three different species - note the differences in the same descriptors for different species. Also for human, we can see the structure that can be considered as an outlier as its values are higher for majority of descriptors.
 
 <img src="https://github.com/GlukhovIgor/Descriptors_package/blob/readme/docs/profiles.png"  width="700" height="240">
@@ -41,9 +50,9 @@ This means that the way of data normalization depends on the questions one wants
 - normalization of merged data helps considering the properties of each dataset altogethes, so that we don't have the same maximum in each dataframe but they are sorted according to the their absolute values. This allows exploring the properties of the structures that are common between the datasets (such as coactivators or ligands present).
 
 
-To get an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
+To get the code for usage example of this package, see [`usage_example.ipynb`](usage_example.ipynb)
 
-To get a code for these (and some more) examples of analysis that can be performed using the output of this package, see [`analysis_example.ipynb`](analysis_example.ipynb)
+To get the code for these (and some more) examples of analysis that can be performed using the output of this package, see [`analysis_example.ipynb`](analysis_example.ipynb)
 
 
 ## Team
