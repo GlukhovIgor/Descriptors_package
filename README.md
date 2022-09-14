@@ -35,14 +35,14 @@ df = calculator.calc_all(<DIRECTORY_NAME>, save_to_csv=False, parallel=False)
 
 Afterwards, the produced dataframes can be analysed several ways.For instance, one can easily compare descriptor profiles of the given PDB structures with polar charts from plotly. Here you can see an example of comparison of the vitamin D receptor datasets for three different species - note the differences in the same descriptors for different species. Also for human, we can see the structure that can be considered as an outlier as its values are higher for majority of descriptors.
 
-<img src="https://github.com/GlukhovIgor/Descriptors_package/blob/readme/docs/profiles.png"  width="700" height="240">
+<img src="https://github.com/GlukhovIgor/Descriptors_package/blob/main/docs/profiles.png"  width="700" height="240">
 
 Another example is labeling the data according to the various components in a complex (coactivator, ligand) or to some property of a crystal structure such as resolution:
 ![parameters comparison](docs/parameters.png)
 
 **Note!** The the data for abovementioned examples was normalized across each dataset separately! If we merge all the data together and normalize it within the whole dataframe we will obtain the following picture:
 
-<img src="https://github.com/GlukhovIgor/Descriptors_package/blob/readme/docs/plot-species.png"  width="800" height="300">
+<img src="https://github.com/GlukhovIgor/Descriptors_package/blob/main/docs/plot-species.png"  width="800" height="300">
 
 This means that the way of data normalization depends on the questions one wants to address: 
 
