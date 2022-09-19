@@ -136,7 +136,9 @@ def calc_dssp_hel(pdb_file, ref):
 
     Returns
     -------
-    ???.
+    tuple(list, int): first item (list) contains boundaries of helices
+    second item (int) contains number of aminoacids that are from helices based on dssp,
+    but are not considered as a part of helices in our reference.
 
     """
     _, _, model, _, _ = utils.get_model_and_structure(pdb_file)
