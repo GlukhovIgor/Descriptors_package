@@ -50,10 +50,6 @@ def COM_protein_to_pandas(pdb_file, protein_name=None):
         Filename of .pdb file used for calculation.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
-
-    Returns
-    -------
-
     """
 # Not implemented
     return None

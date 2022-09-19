@@ -54,10 +54,6 @@ def COM_helix_to_pandas(pdb_file, ref, protein_name=None):
         List of amino acid numbers pairs (start, end) for each helix.
     protein_name: str, default=None
         Protein name to be added to the resulting dataframe.
-
-    Returns
-    -------
-
     """
 # Not implemented yet
     return None
