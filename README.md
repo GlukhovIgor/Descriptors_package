@@ -4,7 +4,7 @@ This repository contains **Biodescriptors** python package. This tool provides f
 
 ## Installation
 
-@@ -54,6 +12,26 @@ Several descriptors require DSSP module to be installed, this can be done using:
+Several descriptors require DSSP module to be installed, this can be done using:
 
 `sudo apt-get install dssp`
 
