@@ -27,5 +27,5 @@ To see an example of usage of this package, see [`usage_example.ipynb`](usage_ex
 ## Acknowledgements
 - Dr. Ferdinand Molnar, Associate Professor, Nazarbayev University
 - Dr. Marie-Dominique Devinges, Lorraine Research Laboratory in Computer Science and its Applications, University of Lorraine
-- Stepan Petrosyan , Bioinformatics Institute student (2019/2020)
+- Stepan Petrosyan, Bioinformatics Institute student (2019/2020)
 - Maria Mamayeva, Bioinformatics Institute student (2019/2020)
