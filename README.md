@@ -17,17 +17,15 @@ The structure of the package and detailed description of each function could be 
 
 To see an example of usage of this package, see [`usage_example.ipynb`](usage_example.ipynb)
 
-To see an example of analysis that can be performed using the output of this package, see [`analysis_example.ipynb`](analysis_example.ipynb)
-
 
 ## Authors
-- Pats Karina, PhD student, ITMO University
-- Glukhov Igor, MSc student, ITMO University
-- Vinogradova Elisaveta, MSc student, ITMO University
+- Karina Pats, PhD student, ITMO University
+- Igor Glukhov, MSc student, ITMO University
+- Elisaveta Vinogradova, MSc student, ITMO University
 
 
 ## Acknowledgements
-- Dr. Molnar Ferdinand, Associate Professor, Nazarbayev University
+- Dr. Ferdinand Molnar, Associate Professor, Nazarbayev University
 - Dr. Marie-Dominique Devinges, Lorraine Research Laboratory in Computer Science and its Applications, University of Lorraine
-- Petrosyan Stepan, Bioinformatics Institute student (2019/2020)
-- Mamayeva Maria, Bioinformatics Institute student (2019/2020)
+- Stepan Petrosyan, Bioinformatics Institute student (2019/2020)
+- Maria Mamayeva, Bioinformatics Institute student (2019/2020)
